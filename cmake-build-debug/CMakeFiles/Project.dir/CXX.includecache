@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mostafa/Documents/c++/Project/Admin.h
+stdio.h
+-
+iostream
+-
+
+/home/mostafa/Documents/c++/Project/main.cpp
+iostream
+-
+stdio.h
+-
+Admin.h
+/home/mostafa/Documents/c++/Project/Admin.h
+
