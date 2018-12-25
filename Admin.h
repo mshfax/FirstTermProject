@@ -82,6 +82,21 @@ void adminMain() //function to clear what admin wants to do
 void allUsers()
 {
     //needs to be completed
+    FILE * allUsersFile = fopen("allUsers.txt","r"); // open allusers file to see all of then
+    if(allUsersFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    for(int i = 0;i < 100000; i++)
+    {
+        //this for must scan the info from allusers file and cout it
+        break;
+    }
+
+    //dige halesho nadashtam bashe baraye farda
+
+    fclose(allUsersFile);
 }
 
 void allTransactions()
