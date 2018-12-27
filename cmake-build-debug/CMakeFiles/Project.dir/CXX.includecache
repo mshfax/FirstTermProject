@@ -12,6 +12,8 @@ stdio.h
 iostream
 -
 
+/home/mostafa/Documents/c++/Project/guest.h
+
 /home/mostafa/Documents/c++/Project/main.cpp
 iostream
 -
@@ -21,4 +23,6 @@ string
 -
 Admin.h
 /home/mostafa/Documents/c++/Project/Admin.h
+guest.h
+/home/mostafa/Documents/c++/Project/guest.h
 

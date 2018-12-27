@@ -33,6 +33,7 @@ int main()
         {
             //goes to function log in
             logIn();
+            break;
         }
         else if(n == 3)
         {
@@ -160,9 +161,9 @@ void logIn() //function to log in
                 if(tempUserName == 1)
                 {
                     //goes to admin function
-                    adminMain();
                     cout << "Hi " << firstName << endl;
-                    break;
+                    adminMain();
+                    return;
                 }
                 else if(tempUserName == 2)
                 {
