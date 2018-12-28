@@ -1,7 +1,6 @@
 // Created by mostafa on 12/23/18.
 // The functions for Admin tasks.
 //needs to be completed
-//a fake commit
 
 #include <stdio.h>
 #include <iostream>
