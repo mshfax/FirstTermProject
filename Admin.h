@@ -117,7 +117,7 @@ void allTransactions()
     FILE * allTransactionsFile = fopen("allTransactions.txt", "r");
     if(allTransactionsFile == NULL)
     {
-        cout << "Error\n";
+        cout << "The File opening was Unsuccessful!\n";
         return;
     }
 
