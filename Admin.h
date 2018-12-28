@@ -114,35 +114,64 @@ void allUsers()
 void allTransactions()
 {
     //needs to be completed
-    FILE * allTransactionsFile = fopen("allTransactions.txt", "r");
+    FILE * allTransactionsFile = fopen("Transactions.txt", "r");
     if(allTransactionsFile == NULL)
     {
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
-
+    //main code here
     fclose(allTransactionsFile);
 }
 
 void allTrips()
 {
     //needs to be completed
-
+    FILE * allTripsFile = fopen("Trips.txt", "r");
+    if(allTripsFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    //main code here
+    fclose(allTripsFile);
 }
 
 void editDrivers()
 {
     //needs to be completed
-
+    FILE * driversFile = fopen("Drivers.txt", "a");
+    if (driversFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    //main code here
+    fclose(driversFile);
 }
 
 void editTrips()
 {
     //needs to be completed
-
+    FILE * tripsFile = fopen("Trips.txt", "a");
+    if(tripsFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    //main code here
+    fclose(tripsFile);
 }
 
 void editVehicles()
 {
     //needs to be completed
+    FILE * vehiclesFile = fopen("Vehicles.txt", "a");
+    if(vehiclesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    //main code here
+    fclose(vehiclesFile);
 }
