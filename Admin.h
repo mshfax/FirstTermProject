@@ -81,7 +81,6 @@ void adminMain() //function to clear what admin wants to do
 //definition functions
 void allUsers()
 {
-    //needs to be completed
     int username_temp,pass_temp,account_temp,m;
     char firstName[20],lastName[20],phone[15];
     FILE * allUsersFile = fopen("allUsers.txt","r"); // open allusers file to see all of them
@@ -115,7 +114,14 @@ void allUsers()
 void allTransactions()
 {
     //needs to be completed
+    FILE * allTransactionsFile = fopen("allTransactions.txt", "r");
+    if(allTransactionsFile == NULL)
+    {
+        cout << "Error\n";
+        return;
+    }
 
+    fclose(allTransactionsFile);
 }
 
 void allTrips()
