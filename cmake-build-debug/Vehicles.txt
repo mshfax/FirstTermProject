@@ -1,0 +1,4 @@
+bus 40 90
+train 300 80
+airplain 200 400
+

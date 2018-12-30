@@ -19,6 +19,10 @@ void allTrips();
 void editDrivers();
 void editTrips();
 void editVehicles();
+void EditCapacityOfAVehicle();
+void EditSpeedOfAVehicle();
+void price();
+void signUpANewDriver();
 
 void adminMain() //function to clear what admin wants to do
 {
@@ -81,8 +85,6 @@ void adminMain() //function to clear what admin wants to do
 //definition functions
 void allUsers()
 {
-    int username_temp,pass_temp,account_temp,m;
-    char firstName[20],lastName[20],phone[15];
     FILE * allUsersFile = fopen("allUsers.txt","r"); // open allusers file to see all of them
     if(allUsersFile == NULL)
     {
@@ -90,24 +92,15 @@ void allUsers()
         return;
     }
     cout << "The users will be displayed in the format below\n";
-    cout << "username\tpassword\taccount number\tfirst name\tlast name\tphone\n";
-    for(int i = 0;i < 100000; i++)
+    cout << "username\tpassword\taccount number\tfirst name\tlast name\tphone\tvehicle(for drivers) or reagent\n";
+    int fileCharacters = getc(allUsersFile);
+    while (fileCharacters != EOF)
     {
-        //this for must scan the info from allusers file and cout it
-        fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\n", &username_temp, &pass_temp, &account_temp, firstName, lastName, phone);
-        cout << username_temp << "\t";
-        cout << pass_temp << "\t";
-        cout << account_temp << "\t";
-        cout << firstName << "\t";
-        cout << lastName << "\t";
-        cout << phone << "\n";
-        m = fgetc(allUsersFile);
-        if(m == EOF)
-        {
-            cout << "These are all users.\n";
-            break;
-        }
+        // display contents of file on screen
+        putchar(fileCharacters);
+        fileCharacters = getc(allUsersFile);
     }
+    //close open file
     fclose(allUsersFile);
 }
 
@@ -147,6 +140,19 @@ void editDrivers()
         return;
     }
     //main code here
+    int a;
+    cout << "Enter the number of task you want to do\n";
+    cout << "1. sign up a new driver\n";
+    cout << "2. Edit drivers Info\n";
+    cin >> a;
+    if(a == 1)
+    {
+        signUpANewDriver();
+    }
+    else if(a == 2)
+    {
+        //editDriversInfo();
+    }
     fclose(driversFile);
 }
 
@@ -173,5 +179,126 @@ void editVehicles()
         return;
     }
     //main code here
+    int m;
+    cout << "Enter the number of task you want to do please...\n";
+    cout << "1. Edit capacity of a vehicle\n";
+    cout << "2. Edit the average speed of a vehicle\n";
+    cout << "3. Edit price algoritm\n";
+    cout << "0. Exit\n";
+    cin >> m;
+    if(m == 1)
+    {
+        EditCapacityOfAVehicle();
+        return;
+    }
+    else if(m == 2)
+    {
+        EditSpeedOfAVehicle();
+        return;
+    }
+    else if(m == 3)
+    {
+        price();
+        return;
+    }
+
     fclose(vehiclesFile);
+}
+
+void EditCapacityOfAVehicle()
+{
+    //code
+}
+
+void EditSpeedOfAVehicle()
+{
+    //code
+}
+
+void price()
+{
+    //code
+}
+
+void signUpANewDriver()
+{
+    const int n = 499999;
+    int driversUsername = n;
+    int i;
+    FILE * accountsFile = fopen("accounts.txt", "r");
+    FILE * driversFile = fopen("Drivers.txt", "a");
+    FILE * allUsersFile = fopen("allUsers.txt", "a");
+    //make sure that files will open
+    if(accountsFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    if(driversFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    if(allUsersFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    // start sign up
+    int account, pass;
+    int account_temp,pass_temp,cash;
+    char firstName[30];
+    char lastName[30];
+    char phone[30];
+    char vehicle[15];
+    cout << "Enter driver's first name please...\n";
+    scanf("%s", firstName);
+    cout << "Enter driver's last name:\n";
+    scanf("%s", lastName);
+    cout << "Enter driver's phone number:\n";
+    scanf("%s", phone);
+    cout << "Enter driver's account number:\n";
+    cin >> account;
+    cout << "Enter the password:\n";
+    cin >> pass;
+    cout << "Confirm the password:\n";
+    cin >> pass_temp;
+    cout << "Enter driver's vehicle\n";
+    scanf("%s", vehicle);
+    if(pass == pass_temp)
+    {
+        for(i = 0;i<100000;i++)
+        {
+            driversUsername++;
+            fscanf(accountsFile,"%d\t%d\t%d\n", &account_temp, &pass_temp, &cash);
+            if(account_temp == account)
+            {
+                if(pass_temp == pass)
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", driversUsername, pass, account, firstName, lastName, phone, vehicle);
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", driversUsername, pass, account, firstName, lastName, phone, vehicle);
+                    cout << "Sign up successfully\n";
+                    break;
+                }
+                else
+                {
+                    cout << "Sorry the password is incorrect...\n";
+                }
+            }
+        }
+        if(i == 100000)
+        {
+            cout << "The account number you have entered is incorrect! Try again please...\n";
+        }
+    }
+    else
+    {
+        cout << "two passwords are not the same !!!\n";
+        return;
+    }
+    //finish sign up
+    //close open files
+    fclose(accountsFile);
+    fclose(driversFile);
+    fclose(allUsersFile);
 }

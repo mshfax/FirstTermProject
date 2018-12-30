@@ -84,6 +84,7 @@ void signUp() //function to sign up
     char firstName[30];
     char lastName[30];
     char phone[30];
+    char reagent[20];
     cout << "Enter your first name please...\n";
     scanf("%s", firstName);
     cout << "Enter your last name:\n";
@@ -96,6 +97,8 @@ void signUp() //function to sign up
     cin >> pass;
     cout << "Confirm the password:\n";
     cin >> pass_temp;
+    cout << "Enter your reagent (if you have no reagent enter noReagent)\n";
+    scanf("%s", reagent);
     if(pass == pass_temp)
     {
         for(i = 0;i<100000;i++)
@@ -106,8 +109,8 @@ void signUp() //function to sign up
             {
                 if(pass_temp == pass)
                 {
-                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\n", username, pass, account, firstName, lastName, phone);
-                    fprintf(usersFile, "%d\t%d\t%d\t%s\t%s\t%s\n", username, pass, account, firstName, lastName, phone);
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", username, pass, account, firstName, lastName, phone, reagent);
+                    fprintf(usersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", username, pass, account, firstName, lastName, phone, reagent);
                     cout << "Sign up successfully\n";
                     break;
                 }
@@ -128,7 +131,6 @@ void signUp() //function to sign up
         return;
     }
     //finish sign up
-
     //closing open files
     fclose(allUsersFile);
     fclose(usersFile);
@@ -170,6 +172,7 @@ void logIn() //function to log in
                 {
                     //goes to driver function
                     cout << "Hi " << firstName << endl;
+                    driversMain();
                     break;
                 }
                 else if(tempUserName == 3)
