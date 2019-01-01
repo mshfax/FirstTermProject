@@ -152,10 +152,10 @@ void logIn() //function to log in
         return;
     }
     int userName_temp, pass_temp, accountNumber;
-    char firstName[30],lastName[30],phone[30];
+    char firstName[21],lastName[21],phone[21],reagent[21];
     for(i = 0;i<100000;i++)
     {
-        fscanf(allUsersFile,"%d\t%d\t%d\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName,lastName, phone);
+        fscanf(allUsersFile,"%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName,lastName, phone, reagent);
         if(username == userName_temp)
         {
             if(password == pass_temp)
@@ -168,17 +168,17 @@ void logIn() //function to log in
                     adminMain();
                     return;
                 }
-                else if(tempUserName == 2)
-                {
-                    //goes to driver function
-                    cout << "Hi " << firstName << endl;
-                    driversMain();
-                    break;
-                }
                 else if(tempUserName == 3)
                 {
                     // goes to user function
                     cout << "Hi " << firstName << endl;
+                    break;
+                }
+                else if(tempUserName == 5)
+                {
+                    //goes to driver function
+                    cout << "Hi " << firstName << endl;
+                    driversMain();
                     break;
                 }
             }
