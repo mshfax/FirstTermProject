@@ -1,2 +1,1 @@
-500085	4294	200085	mohammad	sharafi	03264	airplain
-580473	7327	280473	ahmad	mojtahedi	0315648576	bus
+580473	7327	280473	ahmad	mojtahedi	0315648576	bus
