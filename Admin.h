@@ -101,7 +101,6 @@ void allUsers()
         putchar(fileCharacters);
         fileCharacters = getc(allUsersFile);
     }
-    cout << "These are our all users\n";
     //close open file
     fclose(allUsersFile);
 }
@@ -313,7 +312,7 @@ void editDriversInfo()
     //int username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp;
     //char firstName_allUsersFile_temp[21], lastName_allUsersFile_temp[21], phone_allUsersFile_temp[21], vehicle_allUsersFile_temp[21];
 
-    fscanf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_driversFile_temp, &pass_driversFile_temp, &accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
+    fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_driversFile_temp, &pass_driversFile_temp, &accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
     //fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_allUsersFile_temp, &pass_allUsersFile_temp, &accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
 
     for (i = 0;i < 99999; i++)
@@ -336,7 +335,41 @@ void editDriversInfo()
                     int NewUsername;
                     cout << "Enter new username\n";
                     cin >> NewUsername;
-                    fprintf(driversFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", NewUsername, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(driversFile, -1, SEEK_CUR);
+                    for(j = 0;;j++)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for(int k = 0; k <= j; k++)
+                    {
+                        fprintf(driversFile, "\b");
+                    }
+                    fseek(driversFile, -1, SEEK_CUR);
+                    while(1)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", NewUsername, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
                     //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", NewUsername, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
                     cout << "Username edited successfully." << endl;
                 }
@@ -345,7 +378,41 @@ void editDriversInfo()
                     char NewFirstName[21];
                     cout << "Enter new firstName\n";
                     scanf("%s", NewFirstName);
-                    fprintf(driversFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, NewFirstName, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(driversFile, -1, SEEK_CUR);
+                    for(j = 0;;j++)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for(int k = 0; k <= j; k++)
+                    {
+                        fprintf(driversFile, "\b");
+                    }
+                    fseek(driversFile, -1, SEEK_CUR);
+                    while(1)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, NewFirstName, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
                     //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, NewFirstName, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
                     cout << "First name edited successfully." << endl;
                 }
@@ -354,7 +421,41 @@ void editDriversInfo()
                     char NewLastName[21];
                     cout << "Enter new lastName\n";
                     scanf("%s", NewLastName);
-                    fprintf(driversFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, NewLastName, phone_driversFile_temp, vehicle_driversFile_temp);
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(driversFile, -1, SEEK_CUR);
+                    for(j = 0;;j++)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for(int k = 0; k <= j; k++)
+                    {
+                        fprintf(driversFile, "\b");
+                    }
+                    fseek(driversFile, -1, SEEK_CUR);
+                    while(1)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, NewLastName, phone_driversFile_temp, vehicle_driversFile_temp);
                     //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, NewLastName, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
                     cout << "Last name edited successfully." << endl;
                 }
@@ -363,7 +464,41 @@ void editDriversInfo()
                     char NewPhone[20];
                     cout << "Enter new phone number\n";
                     scanf("%s", NewPhone);
-                    fprintf(driversFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, NewPhone, vehicle_driversFile_temp);
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(driversFile, -1, SEEK_CUR);
+                    for(j = 0;;j++)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for(int k = 0; k <= j; k++)
+                    {
+                        fprintf(driversFile, "\b");
+                    }
+                    fseek(driversFile, -1, SEEK_CUR);
+                    while(1)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, NewPhone, vehicle_driversFile_temp);
                     //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, NewPhone, vehicle_allUsersFile_temp);
                     cout << "Phone number edited successfully." << endl;
                 }
@@ -372,7 +507,41 @@ void editDriversInfo()
                     char NewVehicle[21];
                     cout << "Enter new vehicle\n";
                     scanf("%s", NewVehicle);
-                    fprintf(driversFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, NewVehicle);
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(driversFile, -1, SEEK_CUR);
+                    for(j = 0;;j++)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for(int k = 0; k <= j; k++)
+                    {
+                        fprintf(driversFile, "\b");
+                    }
+                    fseek(driversFile, -1, SEEK_CUR);
+                    while(1)
+                    {
+                        fseek(driversFile, -1, SEEK_CUR);
+                        fscanf(driversFile,"%c", &temp);
+                        if(temp == 10)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            fseek(driversFile, -1, SEEK_CUR);
+                        }
+                    }
+                    fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, NewVehicle);
                     //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, NewVehicle);
                     cout << "Vehicle edited successfully." << endl;
                 }
