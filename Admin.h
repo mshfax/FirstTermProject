@@ -21,6 +21,7 @@ void editTrips();
 void editVehicles();
 void signUpANewDriver();
 void editDriversInfo();
+int editDriversInfoInAllUsersFile(int, int, int, int, char[]);
 void EditCapacityOfAVehicle();
 void EditSpeedOfAVehicle();
 void price();
@@ -101,6 +102,7 @@ void allUsers()
         putchar(fileCharacters);
         fileCharacters = getc(allUsersFile);
     }
+    cout << endl;
     //close open file
     fclose(allUsersFile);
 }
@@ -289,6 +291,8 @@ void signUpANewDriver()
     fclose(allUsersFile);
 }
 
+
+
 void editDriversInfo()
 {
     //getting driver's account info
@@ -309,11 +313,8 @@ void editDriversInfo()
     int i,menuNumber;
     int username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp;
     char firstName_driversFile_temp[21], lastName_driversFile_temp[21], phone_driversFile_temp[21], vehicle_driversFile_temp[21];
-    //int username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp;
-    //char firstName_allUsersFile_temp[21], lastName_allUsersFile_temp[21], phone_allUsersFile_temp[21], vehicle_allUsersFile_temp[21];
 
     fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_driversFile_temp, &pass_driversFile_temp, &accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
-    //fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_allUsersFile_temp, &pass_allUsersFile_temp, &accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
 
     for (i = 0;i < 99999; i++)
     {
@@ -322,6 +323,8 @@ void editDriversInfo()
         {
             if(password == pass_driversFile_temp)
             {
+                //found the drivers line
+                //recognize want info has to be edit
                 cout << "Enter the number of field you want to edit (You can not change account number and password!).\n";
                 cout << "1. Username\n";
                 cout << "2. First name\n";
@@ -330,11 +333,13 @@ void editDriversInfo()
                 cout << "5. vehicle\n";
                 cout << "0. Return to menu\n";
                 cin >> menuNumber;
+
                 if(menuNumber == 1)
                 {
                     int NewUsername;
                     cout << "Enter new username\n";
                     cin >> NewUsername;
+                    //erase the line
                     int j;
                     char temp;      //for declare the end of a  line
                     fseek(driversFile, -1, SEEK_CUR);
@@ -369,15 +374,25 @@ void editDriversInfo()
                             fseek(driversFile, -1, SEEK_CUR);
                         }
                     }
+                    int ExitNumber;
+                    char sringForPassToFunction[] = "nothing";
+                    ExitNumber = editDriversInfoInAllUsersFile(username, password, menuNumber, NewUsername, sringForPassToFunction);
                     fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", NewUsername, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
-                    //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", NewUsername, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
-                    cout << "Username edited successfully." << endl;
+                    if(ExitNumber >= 0)
+                    {
+                        cout << "Username edited successfully." << endl;
+                    }
+                    else
+                    {
+                        cout << "sorry something went wrong!!\n";
+                    }
                 }
                 else if(menuNumber == 2)
                 {
                     char NewFirstName[21];
                     cout << "Enter new firstName\n";
                     scanf("%s", NewFirstName);
+                    //erase the line
                     int j;
                     char temp;      //for declare the end of a  line
                     fseek(driversFile, -1, SEEK_CUR);
@@ -412,15 +427,24 @@ void editDriversInfo()
                             fseek(driversFile, -1, SEEK_CUR);
                         }
                     }
+                    int ExitNumber;
+                    ExitNumber = editDriversInfoInAllUsersFile(username, password, menuNumber, 0, NewFirstName);
                     fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, NewFirstName, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
-                    //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, NewFirstName, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
-                    cout << "First name edited successfully." << endl;
+                    if(ExitNumber >= 0)
+                    {
+                        cout << "First name edited successfully." << endl;
+                    }
+                    else
+                    {
+                        cout << "sorry something went wrong!!\n";
+                    }
                 }
                 else if(menuNumber == 3)
                 {
                     char NewLastName[21];
                     cout << "Enter new lastName\n";
                     scanf("%s", NewLastName);
+                    //erase the line
                     int j;
                     char temp;      //for declare the end of a  line
                     fseek(driversFile, -1, SEEK_CUR);
@@ -456,14 +480,23 @@ void editDriversInfo()
                         }
                     }
                     fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, NewLastName, phone_driversFile_temp, vehicle_driversFile_temp);
-                    //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, NewLastName, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
-                    cout << "Last name edited successfully." << endl;
+                    int ExitNumber;
+                    ExitNumber = editDriversInfoInAllUsersFile(username, password, menuNumber, 0, NewLastName);
+                    if(ExitNumber >= 0)
+                    {
+                        cout << "Last name edited successfully." << endl;
+                    }
+                    else
+                    {
+                        cout << "sorry something went wrong!!\n";
+                    }
                 }
                 else if(menuNumber == 4)
                 {
                     char NewPhone[20];
                     cout << "Enter new phone number\n";
                     scanf("%s", NewPhone);
+                    //erase the line
                     int j;
                     char temp;      //for declare the end of a  line
                     fseek(driversFile, -1, SEEK_CUR);
@@ -499,14 +532,23 @@ void editDriversInfo()
                         }
                     }
                     fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, NewPhone, vehicle_driversFile_temp);
-                    //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, NewPhone, vehicle_allUsersFile_temp);
-                    cout << "Phone number edited successfully." << endl;
+                    int ExitNumber;
+                    ExitNumber = editDriversInfoInAllUsersFile(username, password, menuNumber, 0, NewPhone);
+                    if(ExitNumber >= 0)
+                    {
+                        cout << "Phone number edited successfully." << endl;
+                    }
+                    else
+                    {
+                        cout << "sorry something went wrong!!\n";
+                    }
                 }
                 else if(menuNumber == 5)
                 {
                     char NewVehicle[21];
                     cout << "Enter new vehicle\n";
                     scanf("%s", NewVehicle);
+                    //erase the line
                     int j;
                     char temp;      //for declare the end of a  line
                     fseek(driversFile, -1, SEEK_CUR);
@@ -542,8 +584,16 @@ void editDriversInfo()
                         }
                     }
                     fprintf(driversFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_driversFile_temp, pass_driversFile_temp, accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, NewVehicle);
-                    //fprintf(allUsersFile, "\r%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, NewVehicle);
-                    cout << "Vehicle edited successfully." << endl;
+                    int ExitNumber;
+                    ExitNumber = editDriversInfoInAllUsersFile(username, password, menuNumber, 0, NewVehicle);
+                    if(ExitNumber >= 0)
+                    {
+                        cout << "Vehicle edited successfully." << endl;
+                    }
+                    else
+                    {
+                        cout << "sorry something went wrong!!\n";
+                    }
                 }
                 else if(menuNumber == 0)
                 {
@@ -561,8 +611,11 @@ void editDriversInfo()
                 break;
             }
         }
-        fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_driversFile_temp, &pass_driversFile_temp, &accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
-        //fscanf(allUsersFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_allUsersFile_temp, &pass_allUsersFile_temp, &accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+        else
+        {
+            //read next line
+            fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_driversFile_temp, &pass_driversFile_temp, &accountNumber_driversFile_temp, firstName_driversFile_temp, lastName_driversFile_temp, phone_driversFile_temp, vehicle_driversFile_temp);
+        }
     }
     if(i >= 100000)
     {
@@ -570,7 +623,6 @@ void editDriversInfo()
     }
     //close open file
     fclose(driversFile);
-    //fclose(allUsersFile);
 }
 
 void EditCapacityOfAVehicle()
@@ -586,4 +638,111 @@ void EditSpeedOfAVehicle()
 void price()
 {
     //code
+}
+
+//define a function for edit drivers info in all users file
+int editDriversInfoInAllUsersFile(int username, int password, int menuNumber, int NewIntegers, char NewStrings[21])
+{
+    //open file
+    FILE * allUsersFile = fopen("allUsers.txt", "r+");
+    if(allUsersFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return -1;
+
+    }
+    int username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp;
+    char firstName_allUsersFile_temp[21], lastName_allUsersFile_temp[21], phone_allUsersFile_temp[21], vehicle_allUsersFile_temp[21];
+    //read first line
+    fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_allUsersFile_temp, &pass_allUsersFile_temp, &accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+    //search in the file and edit the info
+    int i;
+    for (i = 0; i<100000; i++)
+    {
+        if(username_allUsersFile_temp == username)
+        {
+            if(password == pass_allUsersFile_temp)
+            {
+                // the line of the driver found
+                //erase the line
+                int j;
+                char temp;
+                fseek(allUsersFile, -1, SEEK_CUR);
+                for (j = 0;; j++)
+                {
+                    fseek(allUsersFile, -1, SEEK_CUR);
+                    fscanf(allUsersFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(allUsersFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(allUsersFile, "\b");
+                }
+                fseek(allUsersFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(allUsersFile, -1, SEEK_CUR);
+                    fscanf(allUsersFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(allUsersFile, -1, SEEK_CUR);
+                    }
+                }
+                //rewrite the line
+                if(menuNumber == 1)//username
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", NewIntegers, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+                    break;
+                }
+                else if(menuNumber == 2)//firstName
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, NewStrings, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+                    break;
+                }
+                else if(menuNumber == 3)//lastName
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, NewStrings, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+                    break;
+                }
+                else if(menuNumber == 4)//phone
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, NewStrings, vehicle_allUsersFile_temp);
+                    break;
+                }
+                else if(menuNumber == 5)//vehicle
+                {
+                    fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", username_allUsersFile_temp, pass_allUsersFile_temp, accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, NewStrings);
+                    break;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                cout << "Sorry the password is incorrect...\n";
+                return -1;
+            }
+        }
+        else
+        {
+            //read the next line
+            fscanf(allUsersFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &username_allUsersFile_temp, &pass_allUsersFile_temp, &accountNumber_allUsersFile_temp, firstName_allUsersFile_temp, lastName_allUsersFile_temp, phone_allUsersFile_temp, vehicle_allUsersFile_temp);
+        }
+    }
+    //close open files
+    fclose(allUsersFile);
+    return 1;
 }
