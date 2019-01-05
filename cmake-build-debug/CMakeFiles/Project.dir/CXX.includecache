@@ -11,6 +11,8 @@ stdio.h
 -
 iostream
 -
+cstring
+-
 
 /home/mostafa/Documents/c++/Project/drivers.h
 stdio.h

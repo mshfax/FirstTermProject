@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -22,8 +23,6 @@ void editVehicles();
 void signUpANewDriver();
 void editDriversInfo();
 int editDriversInfoInAllUsersFile(int, int, int, int, char[]);
-void EditCapacityOfAVehicle();
-void EditSpeedOfAVehicle();
 void price();
 
 void adminMain() //function to clear what admin wants to do
@@ -87,6 +86,7 @@ void adminMain() //function to clear what admin wants to do
 //definition functions
 void allUsers()
 {
+    //completed
     FILE * allUsersFile = fopen("allUsers.txt","r"); // open allUsers file to see all of them
     if(allUsersFile == NULL)
     {
@@ -135,7 +135,7 @@ void allTrips()
 
 void editDrivers()
 {
-    //needs to be completed
+    //completed
     FILE * driversFile = fopen("Drivers.txt", "a");
     if (driversFile == NULL)
     {
@@ -175,36 +175,143 @@ void editTrips()
 void editVehicles()
 {
     //needs to be completed
-    FILE * vehiclesFile = fopen("Vehicles.txt", "a");
+    FILE * vehiclesFile = fopen("Vehicles.txt", "r+");
     if(vehiclesFile == NULL)
     {
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
-    //main code here
-    int m;
-    cout << "Enter the number of task you want to do please...\n";
-    cout << "1. Edit capacity of a vehicle\n";
-    cout << "2. Edit the average speed of a vehicle\n";
-    cout << "3. Edit pricing policy\n";
-    cout << "0. Exit\n";
-    cin >> m;
-    if(m == 1)
+    //ask for the vehicle
+    char vehicleName[21];
+    cout << "Enter the name of vehicle you want to change. (bus/train/airplane)\n";
+    scanf("%s", vehicleName);
+    char vehicleName_temp[21];
+    int capacity, speed;
+    for (int i = 0; i<3; i++)
     {
-        EditCapacityOfAVehicle();
-        return;
+        fscanf(vehiclesFile, "\n%s\t%d\t%d", vehicleName_temp, &capacity, &speed);
+        if(strcmp(vehicleName, vehicleName_temp) == 0)
+        {
+            cout << "what do you want to edit?\n";
+            cout << "1. Capacity\n";
+            cout << "2. Speed\n";
+            cout << "0. Exit\n";
+            int menuNumber;
+            cin >> menuNumber;
+            int j;
+            char temp;      //for declare the end of a  line
+            if(menuNumber == 1)
+            {
+                int NewCapacity;
+                cout << "Enter new capacity\n";
+                cin >> NewCapacity;
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(vehiclesFile, "\b");
+                }
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                int Exit;
+                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t", vehicleName, NewCapacity, speed);
+                if(Exit >= 0)
+                {
+                    cout << "Capacity edited successfully\n";
+                    break;
+                }
+                else
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    break;
+                }
+            }
+            else if(menuNumber == 2)
+            {
+                int NewSpeed;
+                cout << "Enter new capacity\n";
+                cin >> NewSpeed;
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(vehiclesFile, "\b");
+                }
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                int Exit;
+                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t", vehicleName, capacity, NewSpeed);
+                if(Exit >= 0)
+                {
+                    cout << "Speed edited successfully\n";
+                    break;
+                }
+                else
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    break;
+                }
+            }
+            else if(menuNumber == 0)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Sorry the number you entered is not correct! try again please..\n";
+                break;
+            }
+        }
     }
-    else if(m == 2)
-    {
-        EditSpeedOfAVehicle();
-        return;
-    }
-    else if(m == 3)
-    {
-        price();
-        return;
-    }
-
+    //close open files
     fclose(vehiclesFile);
 }
 
@@ -623,16 +730,6 @@ void editDriversInfo()
     }
     //close open file
     fclose(driversFile);
-}
-
-void EditCapacityOfAVehicle()
-{
-    //code
-}
-
-void EditSpeedOfAVehicle()
-{
-    //code
 }
 
 void price()
