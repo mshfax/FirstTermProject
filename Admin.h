@@ -17,12 +17,12 @@ using namespace std;
 void allUsers();
 void allTransactions();
 void allTrips();
-void editDrivers();
+void editDrivers();//complete
 void editTrips();
-void editVehicles();
-void signUpANewDriver();
-void editDriversInfo();
-int editDriversInfoInAllUsersFile(int, int, int, int, char[]);
+void editVehicles();//complete
+void signUpANewDriver();//complete
+void editDriversInfo();//complete
+int editDriversInfoInAllUsersFile(int, int, int, int, char[]);//complete
 void price();
 
 void adminMain() //function to clear what admin wants to do
@@ -186,15 +186,16 @@ void editVehicles()
     cout << "Enter the name of vehicle you want to change. (bus/train/airplane)\n";
     scanf("%s", vehicleName);
     char vehicleName_temp[21];
-    int capacity, speed;
-    for (int i = 0; i<3; i++)
+    int capacity, speed, price;
+    for (int i = 0; i<4; i++)
     {
-        fscanf(vehiclesFile, "\n%s\t%d\t%d", vehicleName_temp, &capacity, &speed);
+        fscanf(vehiclesFile, "\n%s\t%d\t%d\t%d", vehicleName_temp, &capacity, &speed, &price);
         if(strcmp(vehicleName, vehicleName_temp) == 0)
         {
             cout << "what do you want to edit?\n";
             cout << "1. Capacity\n";
             cout << "2. Speed\n";
+            cout << "3. Pricing policy number\n";
             cout << "0. Exit\n";
             int menuNumber;
             cin >> menuNumber;
@@ -238,7 +239,7 @@ void editVehicles()
                     }
                 }
                 int Exit;
-                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t", vehicleName, NewCapacity, speed);
+                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t%d\n", vehicleName, NewCapacity, speed, price);
                 if(Exit >= 0)
                 {
                     cout << "Capacity edited successfully\n";
@@ -253,7 +254,7 @@ void editVehicles()
             else if(menuNumber == 2)
             {
                 int NewSpeed;
-                cout << "Enter new capacity\n";
+                cout << "Enter new speed\n";
                 cin >> NewSpeed;
                 fseek(vehiclesFile, -1, SEEK_CUR);
                 for(j = 0;;j++)
@@ -288,10 +289,60 @@ void editVehicles()
                     }
                 }
                 int Exit;
-                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t", vehicleName, capacity, NewSpeed);
+                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t%d\n", vehicleName, capacity, NewSpeed, price);
                 if(Exit >= 0)
                 {
                     cout << "Speed edited successfully\n";
+                    break;
+                }
+                else
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    break;
+                }
+            }
+            else if(menuNumber == 3)
+            {
+                int NewPrice;
+                cout << "Enter new pricing policy number\n";
+                cin >> NewPrice;
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(vehiclesFile, "\b");
+                }
+                fseek(vehiclesFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(vehiclesFile, -1, SEEK_CUR);
+                    fscanf(vehiclesFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(vehiclesFile, -1, SEEK_CUR);
+                    }
+                }
+                int Exit;
+                Exit = fprintf(vehiclesFile, "%s\t%d\t%d\t%d\n", vehicleName, capacity, speed, NewPrice);
+                if(Exit >= 0)
+                {
+                    cout << "Capacity edited successfully\n";
                     break;
                 }
                 else

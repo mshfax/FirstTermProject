@@ -14,12 +14,9 @@
     <list default="true" id="3e4f7b45-17aa-4625-999a-bc19f57d2ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Drivers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Drivers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Project" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Vehicles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Vehicles.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/allUsers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/allUsers.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Admin.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="194" column="50" lean-forward="true" selection-start-line="194" selection-start-column="50" selection-end-line="194" selection-end-column="50" />
+            <state relative-caret-position="-339">
+              <caret line="341" column="62" selection-start-line="341" selection-start-column="62" selection-end-line="341" selection-end-column="62" />
               <folding>
                 <element signature="e#169#187#0" expanded="true" />
               </folding>
@@ -198,7 +195,7 @@
       <workItem from="1546600003938" duration="6011000" />
       <workItem from="1546606218472" duration="297000" />
       <workItem from="1546637178872" duration="260000" />
-      <workItem from="1546706614074" duration="11694000" />
+      <workItem from="1546706614074" duration="14278000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1545672068194</created>
@@ -211,18 +208,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90698000" />
+    <option name="totallyTimeSpent" value="93282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1615938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.032397408" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.9676026" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.032397408" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -338,8 +334,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Admin.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="194" column="50" lean-forward="true" selection-start-line="194" selection-start-column="50" selection-end-line="194" selection-end-column="50" />
+        <state relative-caret-position="-339">
+          <caret line="341" column="62" selection-start-line="341" selection-start-column="62" selection-end-line="341" selection-end-column="62" />
           <folding>
             <element signature="e#169#187#0" expanded="true" />
           </folding>
