@@ -59,7 +59,20 @@ void driversMain()  //function to clear what admin wants to do
 //definition functions
 void declareTrip()
 {
-    //code
+    //need to be completed
+    FILE * citiesFile = fopen("cities.txt", "r");
+    FILE * tripsFile = fopen("Trips.txt", "a");
+    FILE * vehiclesFile = fopen("Vehicles.txt", "r");
+    if(citiesFile == NULL || tripsFile == NULL || vehiclesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    //main code here
+    //close open files
+    fclose(citiesFile);
+    fclose(tripsFile);
+    fclose(vehiclesFile);
 }
 
 void seePassengersInfo()

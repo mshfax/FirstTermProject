@@ -1,6 +1,9 @@
 // Created by mostafa on 12/23/18.
 // The functions for Admin tasks.
 //needs to be completed
+//for function allTransactions format of the out put must be edited
+//for function allTrips format of the out put must be edited
+
 
 #ifndef PROJECT_ADMIN_H
 #define PROJECT_ADMIN_H
@@ -14,7 +17,7 @@
 using namespace std;
 
 //declaration functions
-void allUsers();
+void allUsers();//complete
 void allTransactions();
 void allTrips();
 void editDrivers();//complete
@@ -116,7 +119,17 @@ void allTransactions()
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
-    //main code here
+    cout << "The users will be displayed in the format below\n";
+    cout << "username\taccount number\tfirst name\tlast name\tphone\tvehicle\tpriceOfTheTicket\ttrackingCode\n";
+    int fileCharacters = getc(allTransactionsFile);
+    while (fileCharacters != EOF)
+    {
+        // display contents of file on screen
+        putchar(fileCharacters);
+        fileCharacters = getc(allTransactionsFile);
+    }
+    cout << endl;
+    //close open file
     fclose(allTransactionsFile);
 }
 
@@ -129,7 +142,17 @@ void allTrips()
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
-    //main code here
+    cout << "The users will be displayed in the format below\n";
+    cout << "driver'sUsername\torigin\testination\tvehicle\tpriceOfTheTicket\n";
+    int fileCharacters = getc(allTripsFile);
+    while (fileCharacters != EOF)
+    {
+        // display contents of file on screen
+        putchar(fileCharacters);
+        fileCharacters = getc(allTripsFile);
+    }
+    cout << endl;
+    //close open file
     fclose(allTripsFile);
 }
 
