@@ -26,6 +26,12 @@ void EditSpeedOfAVehicle();
 void price();
 void signUpANewDriver();
 
+void function()
+{
+	int a;
+}
+
+
 void adminMain() //function to clear what admin wants to do
 {
     int n;
