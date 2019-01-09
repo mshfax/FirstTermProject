@@ -42,7 +42,7 @@ void driversMain()  //function to clear what admin wants to do
         }
         else if(n == 4)
         {
-            historyOfT
+            historyOfTrips();
         }
         else if(n == 0)
         {
