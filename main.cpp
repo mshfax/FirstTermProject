@@ -180,7 +180,7 @@ void logIn() //function to log in
                     {
                         //goes to driver function
                         cout << "Hi " << firstName << endl;
-                        driversMain();
+                        driversMain(username);
                         break;
                     }
                 }

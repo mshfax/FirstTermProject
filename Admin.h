@@ -3,7 +3,6 @@
 //needs to be completed
 //for function allTransactions format of the out put must be edited
 //for function allTrips format of the out put must be edited
-//sharafitest
 
 #ifndef PROJECT_ADMIN_H
 #define PROJECT_ADMIN_H

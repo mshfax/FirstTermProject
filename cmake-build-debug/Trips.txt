@@ -1,1 +1,2 @@
-driver'susername	Origin	Destination	vehicle	priceOfTheTicket
+driver'susername	Origin	Destination	distance	startTime	finishTime	vehicle	priceOfTheTicket
+
