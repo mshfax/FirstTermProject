@@ -13,15 +13,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4f7b45-17aa-4625-999a-bc19f57d2ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Drivers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Drivers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Project" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Vehicles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Vehicles.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Trips.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Trips.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/allUsers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/allUsers.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/drivers.h" beforeDir="false" afterPath="$PROJECT_DIR$/drivers.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,6 +26,20 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
@@ -41,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
+            <state relative-caret-position="464">
+              <caret line="179" column="21" selection-start-line="179" selection-start-column="21" selection-end-line="179" selection-end-column="21" />
               <folding>
                 <element signature="e#28#47#0" expanded="true" />
               </folding>
@@ -50,23 +61,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-209">
-              <caret line="252" column="21" lean-forward="true" selection-start-line="252" selection-start-column="21" selection-end-line="252" selection-end-column="21" />
-              <folding>
-                <element signature="e#169#187#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-619">
+              <caret line="390" column="5" selection-start-line="390" selection-start-column="5" selection-end-line="390" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/drivers.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-547">
-              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="330">
+              <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
+              <folding>
+                <element signature="e#144#162#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,10 +90,20 @@
       <find>your</find>
       <find>username</find>
       <find>drive's</find>
+      <find>lastname</find>
+      <find>temp == 2</find>
+      <find>|| temp == '5'</find>
+      <find>temp == 10 || temp == 0</find>
+      <find>cout &lt;&lt; &quot;Last name edited successfully.&quot; &lt;&lt; endl;</find>
+      <find>== 0</find>
     </findStrings>
     <replaceStrings>
       <replace>drive's</replace>
       <replace>driver's</replace>
+      <replace>lastName</replace>
+      <replace>temp == '5'</replace>
+      <replace>temp == 10</replace>
+      <replace>== NULL</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -92,17 +113,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/guest.h" />
-        <option value="$PROJECT_DIR$/drivers.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Admin.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/drivers.h" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="927" />
-    <option name="height" value="1055" />
+    <option name="y" value="27" />
+    <option name="width" value="917" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -110,7 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,6 +142,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,7 +188,33 @@
       <workItem from="1546019064849" duration="1932000" />
       <workItem from="1546100260670" duration="674000" />
       <workItem from="1546101025043" duration="3298000" />
-      <workItem from="1546185199074" duration="8918000" />
+      <workItem from="1546185199074" duration="9572000" />
+      <workItem from="1546269510502" duration="1099000" />
+      <workItem from="1546356139561" duration="12995000" />
+      <workItem from="1546371050346" duration="784000" />
+      <workItem from="1546431582072" duration="145000" />
+      <workItem from="1546431797720" duration="238000" />
+      <workItem from="1546450746909" duration="3960000" />
+      <workItem from="1546545188269" duration="7822000" />
+      <workItem from="1546600003938" duration="6011000" />
+      <workItem from="1546606218472" duration="297000" />
+      <workItem from="1546637178872" duration="260000" />
+      <workItem from="1546706614074" duration="14537000" />
+      <workItem from="1546794831931" duration="4750000" />
+      <workItem from="1547035633838" duration="853000" />
+      <workItem from="1547038470211" duration="87000" />
+      <workItem from="1547039675692" duration="1925000" />
+      <workItem from="1547041643906" duration="1661000" />
+      <workItem from="1547043468755" duration="1779000" />
+      <workItem from="1547045295126" duration="38000" />
+      <workItem from="1547050034056" duration="1710000" />
+      <workItem from="1547051792698" duration="1793000" />
+      <workItem from="1547053714692" duration="1561000" />
+      <workItem from="1547155820488" duration="1354000" />
+      <workItem from="1547473470171" duration="1714000" />
+      <workItem from="1547475256687" duration="1773000" />
+      <workItem from="1547477099715" duration="1767000" />
+      <workItem from="1547481691138" duration="1151000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1545672068194</created>
@@ -180,24 +227,46 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44739000" />
+    <option name="totallyTimeSpent" value="117457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23242944" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.016602103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13066955" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.032397408" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.032397408" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.032397408" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.9676026" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32937366" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32982844" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.016602103" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.9676026" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.032397408" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.049676027" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32937366" />
@@ -206,7 +275,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -256,9 +325,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="second commit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/guest.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -266,29 +332,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="163" column="18" selection-start-line="163" selection-start-column="18" selection-end-line="163" selection-end-column="18" />
+        <state relative-caret-position="464">
+          <caret line="179" column="21" selection-start-line="179" selection-start-column="21" selection-end-line="179" selection-end-column="21" />
           <folding>
             <element signature="e#28#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drivers.h">
+    <entry file="file://$PROJECT_DIR$/Admin.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-547">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="-619">
+          <caret line="390" column="5" selection-start-line="390" selection-start-column="5" selection-end-line="390" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin.h">
+    <entry file="file://$PROJECT_DIR$/drivers.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-209">
-          <caret line="252" column="21" lean-forward="true" selection-start-line="252" selection-start-column="21" selection-end-line="252" selection-end-column="21" />
+        <state relative-caret-position="330">
+          <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
           <folding>
-            <element signature="e#169#187#0" expanded="true" />
+            <element signature="e#144#162#0" expanded="true" />
           </folding>
         </state>
       </provider>

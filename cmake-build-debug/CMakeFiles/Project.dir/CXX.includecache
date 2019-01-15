@@ -11,11 +11,15 @@ stdio.h
 -
 iostream
 -
+cstring
+-
 
 /home/mostafa/Documents/c++/Project/drivers.h
 stdio.h
 -
 iostream
+-
+math.h
 -
 
 /home/mostafa/Documents/c++/Project/guest.h
