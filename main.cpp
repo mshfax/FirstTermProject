@@ -39,6 +39,7 @@ int main()
         else if(n == 3)
         {
             //goes to function guest
+			guestmain();
         }
         else if(n == 0)
         {
