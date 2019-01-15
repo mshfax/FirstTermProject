@@ -1,6 +1,7 @@
 //
 // Created by mostafa on 12/29/18.
 //needs to be completed
+//tesssssssssssssst
 
 #ifndef PROJECT_DRIVERS_H
 #define PROJECT_DRIVERS_H
@@ -182,9 +183,6 @@ void declareTrip(int username)   //computing the finish hour has some don't know
             break;
         }
     }
-    int time = distance / speed;
-    int temptimehour = time/60;
-    int temptimeminute = time % 60;
     /*int hourFinishTrip = hourStartTrip + temptimehour;
     int minuteFinishTrip = minuteStartTrip + temptimeminute;
     //check that minute and hour finish trip be fewer than 60
