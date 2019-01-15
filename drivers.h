@@ -13,10 +13,10 @@
 #include <math.h>
 
 //functions declaration
-void declareTrip(int);
+void declareTrip(int);//completed
 void seePassengersInfo();
 void cancelDelayTrip();
-void historyOfTrips();
+void historyOfTrips(int);//completed
 
 void driversMain(int username)  //function to clear what admin wants to do
 {
@@ -44,7 +44,7 @@ void driversMain(int username)  //function to clear what admin wants to do
         }
         else if(n == 4)
         {
-            historyOfTrips();
+            historyOfTrips(username);
         }
         else if(n == 0)
         {
@@ -183,22 +183,47 @@ void declareTrip(int username)   //computing the finish hour has some don't know
             break;
         }
     }
-    /*int hourFinishTrip = hourStartTrip + temptimehour;
-    int minuteFinishTrip = minuteStartTrip + temptimeminute;
+    int time = (distance/speed) * 60;
+    int tempHourTime = time / 60;
+    float tempMinuteTime = time % 60;
+    tempMinuteTime/=10;
+    tempMinuteTime = nearbyint(tempMinuteTime);
+    tempMinuteTime*=10;
     //check that minute and hour finish trip be fewer than 60
-    if (minuteFinishTrip >= 60)
+    if (tempMinuteTime >= 60)
     {
-        hourFinishTrip++;
-        minuteFinishTrip-=60;
+        tempHourTime++;
+        tempMinuteTime-=60;
     }
-    if(hourFinishTrip >= 24)
+    //round with 30 minute accuracy (Drop accurately 30 minutes)
+    if(tempMinuteTime < 10)
+    {
+        tempMinuteTime = 0;
+    }
+    else if(tempMinuteTime <= 30)
+    {
+        tempMinuteTime = 30;
+    }
+    else if(tempMinuteTime < 40)
+    {
+        tempMinuteTime = 30;
+    }
+    else if(tempMinuteTime < 60)
+    {
+        tempMinuteTime = 0;
+        tempHourTime++;
+    }
+    /*if(hourFinishTrip >= 24)
     {
         hourFinishTrip -= 24;
     }*/
     //round distance and compute tripPrice and round it
     float tripPrice = distance * price;
     tripPrice = nearbyint(tripPrice);
-    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, vehicle, (int)tripPrice);
+    tripPrice /= 1000;
+    tripPrice = nearbyint(tripPrice);
+    tripPrice *= 1000;
+    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, tempHourTime, (int) tempMinuteTime, vehicle, (int)tripPrice);
     cout << "Trip declared successfully.\n";
     //close open files
     fclose(vehiclesFile);
@@ -217,7 +242,44 @@ void cancelDelayTrip()
     //code
 }
 
-void historyOfTrips()
+void historyOfTrips(int username)
 {
-    //code
+    //open trips file and print the lines for this drivers username
+    FILE * tripsFile = fopen("Trips.txt", "r");
+    //check opening file
+    if(tripsFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    int username_temp, origin, destination, distance, startTripHour, startTripMinute;
+    char vehicle[15];
+    int price;
+    cout << "The trips will be displayed in the format below.(if there was a trip)\n";
+    cout << "username\torigin\tdestination\tdistance\tstart Trip time\t vehicle\tprice\n";
+    int BreakNumber = 0;
+    int c;
+    for (int i = 0; i<100000 && c!=EOF; i++)
+    {
+        fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, vehicle, &price);
+        c = getc(tripsFile);
+        if(username_temp == username)
+        {
+            while(username_temp == username && c!=EOF)
+            {
+                printf("%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination, distance, startTripHour, startTripMinute, vehicle, price);
+                fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, vehicle, &price);
+                c = getc(tripsFile);
+                BreakNumber++;
+            }
+            break;
+        }
+    }
+    if(BreakNumber == 0)
+    {
+        cout << "Sorry you have no declared trip!\n";
+        return;
+    }
+    //close open files
+    fclose(tripsFile);
 }
