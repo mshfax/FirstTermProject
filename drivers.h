@@ -12,10 +12,10 @@
 #include <math.h>
 
 //functions declaration
-void declareTrip(int);
+void declareTrip(int);//completed
 void seePassengersInfo();
 void cancelDelayTrip();
-void historyOfTrips(int);
+void historyOfTrips(int);//completed
 
 void driversMain(int username)  //function to clear what admin wants to do
 {
@@ -182,15 +182,37 @@ void declareTrip(int username)   //computing the finish hour has some don't know
             break;
         }
     }
-    /*int hourFinishTrip = hourStartTrip + temptimehour;
-    int minuteFinishTrip = minuteStartTrip + temptimeminute;
+    int time = (distance/speed) * 60;
+    int tempHourTime = time / 60;
+    float tempMinuteTime = time % 60;
+    tempMinuteTime/=10;
+    tempMinuteTime = nearbyint(tempMinuteTime);
+    tempMinuteTime*=10;
     //check that minute and hour finish trip be fewer than 60
-    if (minuteFinishTrip >= 60)
+    if (tempMinuteTime >= 60)
     {
-        hourFinishTrip++;
-        minuteFinishTrip-=60;
+        tempHourTime++;
+        tempMinuteTime-=60;
     }
-    if(hourFinishTrip >= 24)
+    //round with 30 minute accuracy (Drop accurately 30 minutes)
+    if(tempMinuteTime < 10)
+    {
+        tempMinuteTime = 0;
+    }
+    else if(tempMinuteTime <= 30)
+    {
+        tempMinuteTime = 30;
+    }
+    else if(tempMinuteTime < 40)
+    {
+        tempMinuteTime = 30;
+    }
+    else if(tempMinuteTime < 60)
+    {
+        tempMinuteTime = 0;
+        tempHourTime++;
+    }
+    /*if(hourFinishTrip >= 24)
     {
         hourFinishTrip -= 24;
     }*/
@@ -200,7 +222,7 @@ void declareTrip(int username)   //computing the finish hour has some don't know
     tripPrice /= 1000;
     tripPrice = nearbyint(tripPrice);
     tripPrice *= 1000;
-    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, vehicle, (int)tripPrice);
+    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, tempHourTime, (int) tempMinuteTime, vehicle, (int)tripPrice);
     cout << "Trip declared successfully.\n";
     //close open files
     fclose(vehiclesFile);
