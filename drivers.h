@@ -1,7 +1,6 @@
 //
 // Created by mostafa on 12/29/18.
 //needs to be completed
-//tesssssssssssssst
 
 #ifndef PROJECT_DRIVERS_H
 #define PROJECT_DRIVERS_H
@@ -16,7 +15,7 @@
 void declareTrip(int);
 void seePassengersInfo();
 void cancelDelayTrip();
-void historyOfTrips();
+void historyOfTrips(int);
 
 void driversMain(int username)  //function to clear what admin wants to do
 {
@@ -44,7 +43,7 @@ void driversMain(int username)  //function to clear what admin wants to do
         }
         else if(n == 4)
         {
-            historyOfTrips();
+            historyOfTrips(username);
         }
         else if(n == 0)
         {
@@ -198,6 +197,9 @@ void declareTrip(int username)   //computing the finish hour has some don't know
     //round distance and compute tripPrice and round it
     float tripPrice = distance * price;
     tripPrice = nearbyint(tripPrice);
+    tripPrice /= 1000;
+    tripPrice = nearbyint(tripPrice);
+    tripPrice *= 1000;
     fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, vehicle, (int)tripPrice);
     cout << "Trip declared successfully.\n";
     //close open files
@@ -217,7 +219,44 @@ void cancelDelayTrip()
     //code
 }
 
-void historyOfTrips()
+void historyOfTrips(int username)
 {
-    //code
+    //open trips file and print the lines for this drivers username
+    FILE * tripsFile = fopen("Trips.txt", "r");
+    //check opening file
+    if(tripsFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    int username_temp, origin, destination, distance, startTripHour, startTripMinute;
+    char vehicle[15];
+    int price;
+    cout << "The trips will be displayed in the format below.(if there was a trip)\n";
+    cout << "username\torigin\tdestination\tdistance\tstart Trip time\t vehicle\tprice\n";
+    int BreakNumber = 0;
+    int c;
+    for (int i = 0; i<100000 && c!=EOF; i++)
+    {
+        fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, vehicle, &price);
+        c = getc(tripsFile);
+        if(username_temp == username)
+        {
+            while(username_temp == username && c!=EOF)
+            {
+                printf("%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination, distance, startTripHour, startTripMinute, vehicle, price);
+                fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, vehicle, &price);
+                c = getc(tripsFile);
+                BreakNumber++;
+            }
+            break;
+        }
+    }
+    if(BreakNumber == 0)
+    {
+        cout << "Sorry you have no declared trip!\n";
+        return;
+    }
+    //close open files
+    fclose(tripsFile);
 }

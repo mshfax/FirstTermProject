@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mostafa/Documents/c++/project/FirstTermProject/Admin.h
+stdio.h
+-
+iostream
+-
+cstring
+-
+
+/home/mostafa/Documents/c++/project/FirstTermProject/drivers.h
+stdio.h
+-
+iostream
+-
+math.h
+-
+
+/home/mostafa/Documents/c++/project/FirstTermProject/guest.h
+stdio.h
+-
+iostream
+-
+
+/home/mostafa/Documents/c++/project/FirstTermProject/main.cpp
+iostream
+-
+stdio.h
+-
+string
+-
+Admin.h
+/home/mostafa/Documents/c++/project/FirstTermProject/Admin.h
+guest.h
+/home/mostafa/Documents/c++/project/FirstTermProject/guest.h
+drivers.h
+/home/mostafa/Documents/c++/project/FirstTermProject/drivers.h
+
