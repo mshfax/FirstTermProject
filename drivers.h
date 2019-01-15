@@ -58,7 +58,7 @@ void driversMain(int username)  //function to clear what admin wants to do
 }
 
 //definition functions
-void declareTrip(int username)
+void declareTrip(int username)   //computing the finish hour has some don't know ploblems
 {
     //need to be completed
     FILE * citiesFile = fopen("cities.txt", "r");
@@ -135,11 +135,70 @@ void declareTrip(int username)
         return;
     }
     //computing the distance
-    int distance = sqrt( ((originX - destinationX)*(originX - destinationX)) + ((originY - destinationY)*(originY - destinationY)) );
-    //find the vehicle of the driver
+    float distance = sqrt( ((originX - destinationX)*(originX - destinationX)) + ((originY - destinationY)*(originY - destinationY)) );
     //complete trip time and get vehicle and the trip of the driver and print in the file
-
+    char vehicle[15];
+    int userName_temp, pass_temp ,accountNumber;
+    char firstName[30], lastName[30], phone[15], vehicle_temp[15];
+    fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, vehicle_temp);
+    i = getc(driversFile);
+    j = 1;
+    while (i!=EOF)
+    {
+        if(userName_temp == username)
+        {
+            strcpy(vehicle,vehicle_temp);//got vehicle
+            break;
+        }
+        else
+        {
+            fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, vehicle_temp);
+            i = getc(driversFile);
+        }
+    }
+    char vehicle_name[15];
+    int capacity_temp, speed_temp, price_temp;
+    int speed, price;
+    //open vehicles file for speed
+    FILE * vehiclesFile = fopen("Vehicles.txt", "r");
+    if(vehiclesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return;
+    }
+    for (int i = 0; i<3; i++)
+    {
+        fscanf(vehiclesFile, "\n%s\t%d\t%d\t%d\n", vehicle_name, &capacity_temp, &speed_temp, &price_temp);
+        if(!strcmp(vehicle, vehicle_name))
+        {
+            speed = speed_temp;
+            price = price_temp;
+            break;
+        }
+    }
+    float time = (distance/speed)*60;
+    int temptimehour;
+    temptimehour = ((int) time)/60;
+    int temptimeminute = time - temptimehour;
+    int hourFinishTrip = hourStartTrip + temptimehour;
+    int minuteFinishTrip = minuteStartTrip + temptimeminute;
+    //check that minute and hour finish trip be fewer than 60
+    if (minuteFinishTrip >= 60)
+    {
+        hourFinishTrip++;
+        minuteFinishTrip-=60;
+    }
+    else if(hourFinishTrip >= 24)
+    {
+        hourFinishTrip -= 24;
+    }
+    //round distance and compute tripPrice and round it
+    distance = (int) distance;
+    float tripPrice = distance * price;
+    tripPrice = nearbyint(tripPrice);
+    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, hourFinishTrip, minuteFinishTrip, vehicle, (int)tripPrice);
     //close open files
+    fclose(vehiclesFile);
     fclose(citiesFile);
     fclose(tripsFile);
     fclose(driversFile);

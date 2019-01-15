@@ -1,2 +1,4 @@
-driver'susername	Origin	Destination	distance	startTime	finishTime	vehicle	priceOfTheTicket
+504440	150	32	543	14:0	14:0	train	17731664
+504440	1	2	401	12:0	12:0	train	13120319
+504440	1	2	401	13:0	13:0	train	13120319
 
