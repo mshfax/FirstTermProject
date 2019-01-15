@@ -1,13 +1,8 @@
 // Created by mostafa on 12/23/18.
 // The functions for Admin tasks.
 //needs to be completed
-<<<<<<< HEAD
 //for function allTransactions format of the out put must be edited
 //for function allTrips format of the out put must be edited
-=======
-//sharafi21
-
->>>>>>> 660a3359c859eacba3374e02ec7cd1ca7bfd60f0
 
 #ifndef PROJECT_ADMIN_H
 #define PROJECT_ADMIN_H

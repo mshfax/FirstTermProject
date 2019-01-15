@@ -141,24 +141,30 @@ void declareTrip(int username)   //computing the finish hour has some don't know
     int userName_temp, pass_temp ,accountNumber;
     char firstName[30], lastName[30], phone[15], vehicle_temp[15];
     fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, vehicle_temp);
-    i = getc(driversFile);
-    j = 1;
-    while (i!=EOF)
+    //i = getc(driversFile);
+    //j = 1;
+    for ( j = 0 ;j < 10000; j++)
     {
         if(userName_temp == username)
         {
             strcpy(vehicle,vehicle_temp);//got vehicle
+            //j=0;
             break;
         }
         else
         {
             fscanf(driversFile, "\n%d\t%d\t%d\t%s\t%s\t%s\t%s", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, vehicle_temp);
-            i = getc(driversFile);
+            //i = getc(driversFile);
         }
+    }
+    if(j==100000)
+    {
+        cout << "Sorry the number you have entered is not correct!! Try again\n";
+        return;
     }
     char vehicle_name[15];
     int capacity_temp, speed_temp, price_temp;
-    int speed, price;
+    int speed=0, price=0;
     //open vehicles file for speed
     FILE * vehiclesFile = fopen("Vehicles.txt", "r");
     if(vehiclesFile == NULL)
@@ -166,21 +172,20 @@ void declareTrip(int username)   //computing the finish hour has some don't know
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
-    for (int i = 0; i<3; i++)
+    for (int i = 0; i<6; i++)
     {
         fscanf(vehiclesFile, "\n%s\t%d\t%d\t%d\n", vehicle_name, &capacity_temp, &speed_temp, &price_temp);
-        if(!strcmp(vehicle, vehicle_name))
+        if(strcmp(vehicle, vehicle_name)==0)
         {
             speed = speed_temp;
             price = price_temp;
             break;
         }
     }
-    float time = (distance/speed)*60;
-    int temptimehour;
-    temptimehour = ((int) time)/60;
-    int temptimeminute = time - temptimehour;
-    int hourFinishTrip = hourStartTrip + temptimehour;
+    int time = distance / speed;
+    int temptimehour = time/60;
+    int temptimeminute = time % 60;
+    /*int hourFinishTrip = hourStartTrip + temptimehour;
     int minuteFinishTrip = minuteStartTrip + temptimeminute;
     //check that minute and hour finish trip be fewer than 60
     if (minuteFinishTrip >= 60)
@@ -188,15 +193,15 @@ void declareTrip(int username)   //computing the finish hour has some don't know
         hourFinishTrip++;
         minuteFinishTrip-=60;
     }
-    else if(hourFinishTrip >= 24)
+    if(hourFinishTrip >= 24)
     {
         hourFinishTrip -= 24;
-    }
+    }*/
     //round distance and compute tripPrice and round it
-    distance = (int) distance;
     float tripPrice = distance * price;
     tripPrice = nearbyint(tripPrice);
-    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, hourFinishTrip, minuteFinishTrip, vehicle, (int)tripPrice);
+    fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%s\t%d\n", username, origin, destination,(int) distance, hourStartTrip, minuteStartTrip, vehicle, (int)tripPrice);
+    cout << "Trip declared successfully.\n";
     //close open files
     fclose(vehiclesFile);
     fclose(citiesFile);
