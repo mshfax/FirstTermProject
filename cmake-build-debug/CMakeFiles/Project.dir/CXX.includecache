@@ -13,6 +13,8 @@ iostream
 -
 cstring
 -
+math.h
+-
 
 /home/mostafa/Documents/c++/project/FirstTermProject/drivers.h
 stdio.h

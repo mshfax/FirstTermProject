@@ -2,6 +2,7 @@
 // The functions for Admin tasks.
 //needs to be completed
 //for function allTransactions format of the out put must be edited
+//the password confim in edit trips must be completed
 
 #ifndef PROJECT_ADMIN_H
 #define PROJECT_ADMIN_H
@@ -11,6 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <cstring>
+#include <math.h>
 
 using namespace std;
 
@@ -24,12 +26,10 @@ void editVehicles();//complete
 void signUpANewDriver();//complete
 void editDriversInfo();//complete
 int editDriversInfoInAllUsersFile(int, int, int, int, char[]);//complete
+int computeNewDistance(int, int);//complete
+int computeNewTime(int, char[]);//complete
+int computeNewPrice(int, char[]);//complete
 void price();
-
-void function()
-{
-	int a;
-}
 
 
 void adminMain() //function to clear what admin wants to do
@@ -190,14 +190,179 @@ void editTrips()
 {
     //needs to be completed
     FILE * tripsFile = fopen("Trips.txt", "r+");
-    if(tripsFile == NULL)
+    FILE * ticketFile = fopen("ticket.txt", "r+");
+    if(tripsFile == NULL || ticketFile == NULL)
     {
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
     //main code here
+    //get the username and pass of the driver
+    int username, password, origin, destination, hour, minute;
+    cout << "Enter the username of the driver you want to change his/her trip\n";
+    cin >> username;
+    cout << "Enter driver's password\n";
+    cin >> password;
+    cout << "Enter trip's origin\n";
+    cin >> origin;
+    cout << "Enter trip's destination\n";
+    cin >> destination;
+    cout << "Enter trip's start hour\n";
+    cin >> hour;
+    cout << "enter trip's start minute\n";
+    cin >> minute;
+    //search the username in the trip file and change it
+    int driverUsername_trip, origin_trip, destination_trip, distance_trip, startTripHour_trip, startTripMinute_trip, tripDurationHour_trip, tripDurationMinute_trip;
+    char vehicle_trip[15];
+    int price_trip;
+    int i;
+    int finishLoop = fgetc(tripsFile);
 
 
+    fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", &driverUsername_trip, &origin_trip, &destination_trip, &distance_trip, &startTripHour_trip, &startTripMinute_trip, &tripDurationHour_trip, &tripDurationMinute_trip, vehicle_trip, &price_trip);
+
+    for (i = 0; finishLoop!=EOF ; i++)
+    {
+        if(driverUsername_trip == username && origin_trip == origin && destination_trip == destination && startTripHour_trip == hour && startTripMinute_trip == minute)
+        {
+            cout << "Enter the number of field you want to edit.\n";
+            cout << "1. origin\n";
+            cout << "2. destination\n";
+            cout << "3. origin and destination\n";
+            cout << "4. start hour of the trip\n";
+            cout << "5. start minute of the trip\n";
+            cout << "0. Exit\n";
+            int menuNumber;
+            cin >> menuNumber;
+            if(menuNumber == 1)//origin
+            {
+                int NewOrigin;
+                cout << "Enter new origin\n";
+                cin >> NewOrigin;
+                int NewDistance = computeNewDistance(NewOrigin, destination_trip);
+                if(NewDistance < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int NewTime = computeNewTime(NewDistance, vehicle_trip);
+                if(NewTime < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int tempHourTime = NewTime / 60;
+                float tempMinuteTime = NewTime % 60;
+                tempMinuteTime/=10;
+                tempMinuteTime = nearbyint(tempMinuteTime);
+                tempMinuteTime*=10;
+                //check that minute and hour finish trip be fewer than 60
+                if (tempMinuteTime >= 60)
+                {
+                    tempHourTime++;
+                    tempMinuteTime-=60;
+                }
+                //round with 30 minute accuracy (Drop accurately 30 minutes)
+                if(tempMinuteTime < 10)
+                {
+                    tempMinuteTime = 0;
+                }
+                else if(tempMinuteTime <= 30)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 40)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 60)
+                {
+                    tempMinuteTime = 0;
+                    tempHourTime++;
+                }
+                int NewPrice = computeNewPrice(NewDistance, vehicle_trip);
+                if(NewPrice < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                //erase the line
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, "\b");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, NewOrigin, destination_trip, NewDistance, startTripHour_trip, startTripMinute_trip, tempHourTime,(int) tempMinuteTime, vehicle_trip, NewPrice);
+                cout << "Edit trip successfully done.\n\n";
+                break;
+            }
+            else if(menuNumber == 2)//destination
+            {
+
+            }
+            else if(menuNumber == 3)//destination and origin
+            {
+
+            }
+            else if(menuNumber == 4)//start Hour
+            {
+
+            }
+            else if(menuNumber == 5)//start minute
+            {
+
+            }
+            else if(menuNumber == 0)//go back
+            {
+                break;
+            }
+            else
+            {
+                cout << "Sorry the number you have entered is not correct!! Try again please.\n";
+                break;
+            }
+        }
+        else
+        {
+            finishLoop = fgetc(tripsFile);
+            fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", &driverUsername_trip, &origin_trip, &destination_trip, &distance_trip, &startTripHour_trip, &startTripMinute_trip, &tripDurationHour_trip, &tripDurationMinute_trip, vehicle_trip, &price_trip);
+        }
+
+    }
+    if(i >= 100000)
+    {
+        cout << "Sorry the username you have entered is not correct!! try again please..\n";
+        return;
+    }
 
     //close open files
     fclose(tripsFile);
@@ -492,7 +657,6 @@ void editDriversInfo()
     cin >> password;
     //open files
     FILE * driversFile = fopen("Drivers.txt", "r+");
-    //FILE * allUsersFile = fopen("allUsers.txt", "r+");
     if(driversFile == NULL)
     {
         cout << "The File opening was Unsuccessful!\n";
@@ -924,4 +1088,122 @@ int editDriversInfoInAllUsersFile(int username, int password, int menuNumber, in
     //close open files
     fclose(allUsersFile);
     return 1;
+}
+
+int computeNewDistance(int origin, int destination)
+{
+    FILE * citiesFile = fopen("cities.txt", "r");
+    if(citiesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return -1;
+    }
+    int originX=0, originY=0, tempOrigin, a=0, b=0;
+    fscanf(citiesFile, "%d\t%d\t%d", &tempOrigin, &a, &b);
+    int i = getc(citiesFile);
+    fseek(citiesFile,-1,SEEK_CUR);
+    int j = 1;
+    while (i!=EOF)
+    {
+        if(tempOrigin == origin)
+        {
+            originX = a;
+            originY = b;
+            j = 0;
+            break;
+        }
+        else
+        {
+            fscanf(citiesFile, "%d\t%d\t%d", &tempOrigin, &a, &b);
+            i = getc(citiesFile);
+        }
+    }
+    if(j)
+    {
+        cout << "Sorry the number you have entered is not correct!! Try again\n";
+        return -1;
+    }
+    fseek(citiesFile, 0, SEEK_SET);
+    //destination
+    int destinationX=0, destinationY=0, tempDestination;
+    fscanf(citiesFile, "%d\t%d\t%d", &tempDestination, &a, &b);
+    i = getc(citiesFile);
+    fseek(citiesFile,-1,SEEK_CUR);
+    j = 1;
+    while (i!=EOF)
+    {
+        if(tempDestination == destination)
+        {
+            destinationX = a;
+            destinationY = b;
+            j = 0;
+            break;
+        }
+        else
+        {
+            fscanf(citiesFile, "%d\t%d\t%d", &tempDestination, &a, &b);
+            i = getc(citiesFile);
+        }
+    }
+    if(j)
+    {
+        cout << "Sorry the number you have entered is not correct!! Try again\n";
+        return -1;
+    }
+    //computing the distance
+    float distance = sqrt( ((originX - destinationX)*(originX - destinationX)) + ((originY - destinationY)*(originY - destinationY)) );
+    return (int) distance;
+}
+
+int computeNewTime(int distance, char vehicle[15])
+{
+    int capacity_temp, speed_temp, price_temp;
+    int speed=0;
+    //open vehicles file for speed
+    FILE * vehiclesFile = fopen("Vehicles.txt", "r");
+    if(vehiclesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return -1;
+    }
+    for (int i = 0; i<6; i++)
+    {
+        fscanf(vehiclesFile, "\n%s\t%d\t%d\t%d\n", vehicle, &capacity_temp, &speed_temp, &price_temp);
+        if(strcmp(vehicle, vehicle)==0)
+        {
+            speed = speed_temp;
+            break;
+        }
+    }
+    int time = (distance/speed) * 60;
+    return time;
+}
+
+int computeNewPrice(int distance, char vehicle[15])
+{
+    char vehicle_temp[15];
+    int capacity_temp, speed_temp, price_temp;
+    int price=0;
+    //open vehicles file for speed
+    FILE * vehiclesFile = fopen("Vehicles.txt", "r");
+    if(vehiclesFile == NULL)
+    {
+        cout << "The File opening was Unsuccessful!\n";
+        return -1;
+    }
+    for (int i = 0; i<6; i++)
+    {
+        fscanf(vehiclesFile, "\n%s\t%d\t%d\t%d\n", vehicle_temp, &capacity_temp, &speed_temp, &price_temp);
+        if(strcmp(vehicle, vehicle_temp)==0)
+        {
+            price = price_temp;
+            break;
+        }
+    }
+    float tripPrice;
+    tripPrice = price * distance;
+    tripPrice /= 1000;
+    tripPrice = nearbyint(tripPrice);
+    tripPrice *= 1000;
+    return (int) tripPrice;
 }
