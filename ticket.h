@@ -18,11 +18,11 @@
 
 using namespace std;
 //functions declaration
-
+void ticketuser();
 void ticketguest();
 void ticketMain();
 void printInAccountFile(int,int,int,int,int,int,int,int,int);
-
+void ticketuser(int, int, int, char, char, char, char);
 
 /*void ticketMain(int number) {//whatdo you want to do
     int n;
@@ -219,9 +219,85 @@ void ticketGuest()
     fclose(accountsFile);
 }
 
+
+void ticketuser(int userName_temp, int pass_temp, int accountNumber, char firstName, char lastName, char phone, char reagent) 
+{
+
+	for (int i = 0;; i++)
+	{
+
+
+		fscanf(trip, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", &account_driver_temp, &origin_temp, &way_temp, &destination_temp, &time_origin_temp, &time_destination_temp, &vehicle_temp, &cast_temp);
+		if (origin == origin_temp&&destination == destination_temp)
+		{
+
+
+			if (account_driver_temp == account_temp)
+			{
+				driver_pass = pass_temp;
+			}
+			cout << "Hi" << "\t" << firstName << "\n\n";
+			cout << "Your route:\t" << origin_temp << "_" << destination_temp << "\n\n";
+			cout << "The distance between two cities:  " << way_temp << "\n\n";
+			cout << "departure time:\t" << time_origin_temp << "\t" << "time of travel:\t" << time_destination_temp << "\n\n";
+			cout << "The rate of each seat:\t" << cast_temp << "\n\n";
+			cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
+			cout << "Phone:\t" << phone << "\n\n";
+			cout << "Seat number:\t" << "_" << "\n\n\n";
+			cout << "press 1 to reseve\n";
+			cout << "or press 0 to exit\n";
+			cin >> taid;
+			if (taid == 1)
+			{
+				driver_mony = cast_temp*(9 / 10);
+				admin_mony = cast_temp*(1 / 10);
+				passenger_mony = cast_temp;
+
+				printInAccountFile(passenger_mony, admin_mony, driver_mony, account, accountNumber_admin, account_driver_temp, pass, password_admin, driver_pass);
+
+				cout << "mission accomplished\n";
+
+			}
+
+
+			else
+			{
+				break;
+			}
+			break;
+		}
+		else
+		{
+			cout << "The vehicle you intended for your trip was not found\n";
+			break;
+		}
+
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver)
 {
-    cout << "hi";
+	FILE*transactionFile = fopen("transaction.txt", a); 
+	if (transactionFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return;
+	}
+
     FILE * accountsFile = fopen("accounts.txt", "r+");
     if (accountsFile == NULL)
     {
@@ -253,7 +329,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                     {
                         fseek(accountsFile, -1, SEEK_CUR);
                     }
-                    cout << "hi 1";
+                    
                 }
                 for (int k = 0; k <= j; k++)
                 {
@@ -292,6 +368,8 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
         cout << "Sorry the account number you have entered is not correct!\n";
         return;
     }
+
+	///...
     fseek(accountsFile, 0, SEEK_SET);
     fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
     for (i = 0; i<100000; i++)
@@ -317,7 +395,8 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
 
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_admin, password_admin, adminCash);
                 break;
-                cout << "hi 2";
+               
+
             }
             else
             {
@@ -378,7 +457,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                         fseek(accountsFile, -1, SEEK_CUR);
                     }
                 }
-                cout << "hi 4";
+               fprinf(transactionFile,"%d\t%s")
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
                 break;
             }
@@ -399,4 +478,5 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
         return;
     }
     fclose(accountsFile);
+	fclose(transactionFile);
 }

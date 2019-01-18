@@ -234,7 +234,32 @@ void declareTrip(int username)   //computing the finish hour has some don't know
 
 void seePassengersInfo()
 {
-    //code
+	
+	int timemin, timehour;
+	FILE *ticket = fopen("ticket.txt", "r+");
+	if (ticket == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return;
+	}
+
+	cout << "firstname" << " " << "lastname" << "  " << "origin" << " " << "destination" << "  " << "trakingcode" << "\n";
+	int c;
+   for(int i=0; i<100000 && c != EOF; i++)
+   {
+	   fscanf(ticket, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%d", firstName, lastName, &driversUsername, &origin, &destination, &timemin, &timehour, &trackingCode);
+	  c = getc(tripsFile);
+	  if (username == driversUsername)
+	    {
+		  cout << firstName << " " << lastName<<"  ";
+		  cout << origin << " " << destination << "  ";
+		  printf("%d:%d", startTime);
+		  cout <<"  " <<trakingCode << "\n";
+		  c = getc(tripsFile);
+        }
+
+   }
+   fclose(ticket);
 }
 
 void cancelDelayTrip()

@@ -175,8 +175,9 @@ void logIn() //function to log in
                     else if(tempUserName == 3)
                     {
                         // goes to user function
+						ticketuser(int userName_temp,int pass_temp,int accountNumber,char firstName,char lastName,char phone,char reagent);
                         cout << "Hi " << firstName << endl;
-
+						
                         break;
                     }
                     else if(tempUserName == 5)
