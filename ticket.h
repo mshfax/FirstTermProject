@@ -52,7 +52,8 @@ void ticketGuest()
     FILE * ticketFile = fopen("ticket.txt", "a");
     FILE * tripFile = fopen("Trips.txt", "r");
     FILE * accountsFile = fopen("accounts.txt", "r");
-    if(ticketFile == NULL || tripFile == NULL || accountsFile == NULL)
+    FILE * driverFile = fopen("Drivers.txt", "r");
+    if(ticketFile == NULL || tripFile == NULL || accountsFile == NULL || driverFile == NULL)
     {
         cout << "The File opening was Unsuccessful!\n";
         return;
@@ -68,10 +69,10 @@ void ticketGuest()
     int origin_temp, destination_temp, driverUsername, startTimeHour, startTimeMinute, timeDurationHour, timeDurationMinute, way_temp, cast_temp;
     int account, pass;
     int account_temp, pass_temp, cash;
+    int accountNumber_driver;
     char firstName[30], lastName[30];
     char phone[30];
     char vehicle[20], vehicle_temp[20];
-    char reagent[20];
     cout << "Enter your first name please...\n\n";
     scanf("%s", firstName);
     cout << "Enter your last name:\n\n";
@@ -156,7 +157,33 @@ void ticketGuest()
                                     trackingCode[i] = arr[rand()%9];
                                 }
                                 trackingCode[10] = '\0';
-                                printInAccountFile(passenger_mony,admin_mony,driver_mony,account,accountNumber_admin,account,pass,password_admin,driver_pass, trackingCode);
+
+
+                                cout << driverUsername << endl;
+
+                                {
+                                    //search in drivers file and give account number and password
+                                    int usernameTemp, passwordTemp, accountNumberTemp;
+                                    char firstNameTemp[30], lastNameTemp[30], phoneTemp[15], vehicleTemp[15];
+                                    int t = getc(driverFile);
+                                    while(t!=EOF)
+                                    {
+                                        fscanf(driverFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &usernameTemp, &passwordTemp, &accountNumberTemp, firstNameTemp, lastNameTemp, phoneTemp, vehicle_temp);
+                                        if(usernameTemp == driverUsername)
+                                        {
+                                            accountNumber_driver = accountNumberTemp;
+                                            driver_pass = passwordTemp;
+                                            break;
+                                        }
+                                        t = fgetc(driverFile);
+                                    }
+                                }
+
+                                cout << accountNumber_driver << endl;
+                                cout << driver_pass << endl;
+
+
+                                printInAccountFile(passenger_mony,admin_mony,driver_mony,account,accountNumber_admin,accountNumber_driver,pass,password_admin,driver_pass, trackingCode);
                                 fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%s", firstName, lastName, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, trackingCode);
                                 cout << "mission accomplished\n";
                                 break;
@@ -165,7 +192,6 @@ void ticketGuest()
                             {
                                 break;
                             }
-                            break;
                         }
                     }
                 }
@@ -190,6 +216,7 @@ void ticketGuest()
     fclose(ticketFile);
     fclose(tripFile);
     fclose(accountsFile);
+    fclose(driverFile);
 }
 
 
@@ -450,11 +477,9 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
 
              
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
-
                 cash = cash + driverCash;
-				fprintf(transactionFile, "%d\t+%d\n", accountNumber_driver, driverCash);
+				fprintf(transactionFile, "%d\t+%d\t%s\n", accountNumber_driver, driverCash, trackingCode);
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, cash);
-
                 break;
             }
             else
@@ -470,7 +495,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
     }
     if(i >= 100000)
     {
-        cout << "Sorry the account number you have entered is not correct!\n";
+        cout << "Sorry the account number you have entered is not correct!  4\n";
         return;
     }
     fclose(accountsFile);
