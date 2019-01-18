@@ -231,6 +231,7 @@ void editTrips()
             cout << "3. origin and destination\n";
             cout << "4. start hour of the trip\n";
             cout << "5. start minute of the trip\n";
+            cout << "6. start hour and minute of the trip\n";
             cout << "0. Exit\n";
             int menuNumber;
             cin >> menuNumber;
@@ -305,7 +306,7 @@ void editTrips()
                 }
                 for(int k = 0; k <= j; k++)
                 {
-                    fprintf(tripsFile, "\b");
+                    fprintf(tripsFile, " ");
                 }
                 fseek(tripsFile, -1, SEEK_CUR);
                 while(1)
@@ -327,19 +328,214 @@ void editTrips()
             }
             else if(menuNumber == 2)//destination
             {
-
+                int NewDestination;
+                cout << "Enter new destination\n";
+                cin >> NewDestination;
+                int NewDistance = computeNewDistance(origin_trip, NewDestination);
+                if(NewDistance < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int NewTime = computeNewTime(NewDistance, vehicle_trip);
+                if(NewTime < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int tempHourTime = NewTime / 60;
+                float tempMinuteTime = NewTime % 60;
+                tempMinuteTime/=10;
+                tempMinuteTime = nearbyint(tempMinuteTime);
+                tempMinuteTime*=10;
+                //check that minute and hour finish trip be fewer than 60
+                if (tempMinuteTime >= 60)
+                {
+                    tempHourTime++;
+                    tempMinuteTime-=60;
+                }
+                //round with 30 minute accuracy (Drop accurately 30 minutes)
+                if(tempMinuteTime < 10)
+                {
+                    tempMinuteTime = 0;
+                }
+                else if(tempMinuteTime <= 30)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 40)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 60)
+                {
+                    tempMinuteTime = 0;
+                    tempHourTime++;
+                }
+                int NewPrice = computeNewPrice(NewDistance, vehicle_trip);
+                if(NewPrice < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                //erase the line
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, " ");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, NewDestination, NewDistance, startTripHour_trip, startTripMinute_trip, tempHourTime,(int) tempMinuteTime, vehicle_trip, NewPrice);
+                cout << "Edit trip successfully done.\n\n";
+                break;
             }
             else if(menuNumber == 3)//destination and origin
             {
-
+                int NewDestination, NewOrigin;
+                cout << "Enter new origin\n";
+                cin >> NewOrigin;
+                cout << "Enter new destination\n";
+                cin >> NewDestination;
+                int NewDistance = computeNewDistance(NewOrigin, NewDestination);
+                if(NewDistance < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int NewTime = computeNewTime(NewDistance, vehicle_trip);
+                if(NewTime < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                int tempHourTime = NewTime / 60;
+                float tempMinuteTime = NewTime % 60;
+                tempMinuteTime/=10;
+                tempMinuteTime = nearbyint(tempMinuteTime);
+                tempMinuteTime*=10;
+                //check that minute and hour finish trip be fewer than 60
+                if (tempMinuteTime >= 60)
+                {
+                    tempHourTime++;
+                    tempMinuteTime-=60;
+                }
+                //round with 30 minute accuracy (Drop accurately 30 minutes)
+                if(tempMinuteTime < 10)
+                {
+                    tempMinuteTime = 0;
+                }
+                else if(tempMinuteTime <= 30)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 40)
+                {
+                    tempMinuteTime = 30;
+                }
+                else if(tempMinuteTime < 60)
+                {
+                    tempMinuteTime = 0;
+                    tempHourTime++;
+                }
+                int NewPrice = computeNewPrice(NewDistance, vehicle_trip);
+                if(NewPrice < 0)
+                {
+                    cout << "Sorry something went wrong!!!\n";
+                    return;
+                }
+                //erase the line
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, " ");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                cout << 12 << endl;
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, NewOrigin, NewDestination, NewDistance, startTripHour_trip, startTripMinute_trip, tempHourTime,(int) tempMinuteTime, vehicle_trip, NewPrice);
+                cout << "Edit trip successfully done.\n\n";
+                break;
             }
             else if(menuNumber == 4)//start Hour
             {
-
+                int NewStartHour;
+                cout << "Enter new Hour\n";
+                cin >> NewStartHour;
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, startTripMinute_trip, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                break;
             }
             else if(menuNumber == 5)//start minute
             {
-
+                int NewStartMinute;
+                cout << "Enter new Minute\n";
+                cin >> NewStartMinute;
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, startTripHour_trip, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                break;
+            }
+            else if(menuNumber == 6)
+            {
+                int NewStartHour,NewStartMinute;
+                cout << "Enter new Hour\n";
+                cin >> NewStartHour;
+                cout << "Enter new Minute\n";
+                cin >> NewStartMinute;
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                break;
             }
             else if(menuNumber == 0)//go back
             {
@@ -356,14 +552,12 @@ void editTrips()
             finishLoop = fgetc(tripsFile);
             fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", &driverUsername_trip, &origin_trip, &destination_trip, &distance_trip, &startTripHour_trip, &startTripMinute_trip, &tripDurationHour_trip, &tripDurationMinute_trip, vehicle_trip, &price_trip);
         }
-
     }
     if(i >= 100000)
     {
         cout << "Sorry the username you have entered is not correct!! try again please..\n";
         return;
     }
-
     //close open files
     fclose(tripsFile);
 }

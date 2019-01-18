@@ -96,6 +96,9 @@
 		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/main.cpp">
 			<Option target="Project"/>
 		</Unit>
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/ticket.h">
+			<Option target="Project"/>
+		</Unit>
 		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

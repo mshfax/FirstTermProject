@@ -3,4 +3,4 @@ project(Project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Project main.cpp Admin.h guest.h drivers.h)
+add_executable(Project main.cpp Admin.h guest.h drivers.h ticket.h)
