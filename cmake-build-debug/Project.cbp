@@ -90,9 +90,6 @@
 		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/drivers.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/guest.h">
-			<Option target="Project"/>
-		</Unit>
 		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/main.cpp">
 			<Option target="Project"/>
 		</Unit>

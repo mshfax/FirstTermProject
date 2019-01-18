@@ -18,12 +18,6 @@
 
 using namespace std;
 //functions declaration
-void ticketuser();
-void ticketguest();
-void ticketMain();
-void printInAccountFile(int,int,int,int,int,int,int,int,int);
-void ticketuser(int, int, int, char, char, char, char);
-
 void printInAccountFile(int,int,int,int,int,int,int,int,int,char[]);
 
 
@@ -81,7 +75,7 @@ void ticketGuest()
     cout << "Enter your first name please...\n\n";
     scanf("%s", firstName);
     cout << "Enter your last name:\n\n";
-    scanf("%s", lastName, "\n");
+    scanf("%s", lastName);
     cout << "enter origin\n";
     cin >> origin;
     cout << "enter destination\n";
@@ -163,9 +157,9 @@ void ticketGuest()
                                 }
                                 trackingCode[10] = '\0';
                                 printInAccountFile(passenger_mony,admin_mony,driver_mony,account,accountNumber_admin,account,pass,password_admin,driver_pass, trackingCode);
-
                                 fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%s", firstName, lastName, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, trackingCode);
                                 cout << "mission accomplished\n";
+                                break;
                             }
                             else
                             {
@@ -198,9 +192,9 @@ void ticketGuest()
     fclose(accountsFile);
 }
 
-<<<<<<< HEAD
 
-void ticketuser(int userName_temp, int pass_temp, int accountNumber, char firstName, char lastName, char phone, char reagent) 
+
+/*void ticketuser(int userName_temp, int pass_temp, int accountNumber, char firstName, char lastName, char phone, char reagent)
 {
 
 	for (int i = 0;; i++)
@@ -255,25 +249,13 @@ void ticketuser(int userName_temp, int pass_temp, int accountNumber, char firstN
 	}
 
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
+}*/
 
 
 void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[10])
 {
 
-	FILE*transactionFile = fopen("transaction.txt", a);
+	FILE*transactionFile = fopen("transaction.txt", "a");
 	if (transactionFile == NULL)
 	{
 		cout << "The File opening was Unsuccessful!\n";
@@ -332,13 +314,13 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                     }
                 }
                 cash = cash - userCash;
-				fprinf(transactionFile, "%d\t_%d\t", accountNumber_user, userCash);
+				fprintf(transactionFile, "%d\t-%d\t", accountNumber_user, userCash);
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_user, password_user, cash);
                 break;
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect.\n";
+                cout << "Sorry the password you entered is incorrect. 1\n";
                 break;
             }
         }
@@ -401,14 +383,14 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                     }
                 }*/
                 cash = cash + adminCash;
-				fprinf(transactionFile, "%d\t_%d\t", accountNumber_admin, adminCash);
+				fprintf(transactionFile, "%d\t+%d\t", accountNumber_admin, adminCash);
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_admin, password_admin, cash);
                 break;
 
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect.\n";
+                cout << "Sorry the password you entered is incorrect. 2\n";
                 break;
             }
         }
@@ -470,14 +452,14 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
 
                 cash = cash + driverCash;
-				fprinf(transactionFile, "%d\t_%d\n", accountNumber_driver, driverCash);
+				fprintf(transactionFile, "%d\t+%d\n", accountNumber_driver, driverCash);
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, cash);
 
                 break;
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect.\n";
+                cout << "Sorry the password you entered is incorrect. 3\n";
                 break;
             }
         }

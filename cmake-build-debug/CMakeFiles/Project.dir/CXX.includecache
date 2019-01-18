@@ -37,6 +37,8 @@ drivers.h
 /home/mostafa/Documents/c++/project/FirstTermProject/drivers.h
 ticket.h
 /home/mostafa/Documents/c++/project/FirstTermProject/ticket.h
+user.h
+/home/mostafa/Documents/c++/project/FirstTermProject/user.h
 
 /home/mostafa/Documents/c++/project/FirstTermProject/ticket.h
 stdio.h
@@ -50,5 +52,11 @@ cmath
 iostream
 -
 string.h
+-
+
+/home/mostafa/Documents/c++/project/FirstTermProject/user.h
+iostream
+-
+stdio.h
 -
 

@@ -18,10 +18,10 @@ using namespace std;
 
 //declaration functions
 void allUsers();//complete
-void allTransactions();
+void allTransactions();//complete
 void allTrips();//completed
 void editDrivers();//complete
-void editTrips();
+void editTrips();//completed
 void editVehicles();//complete
 void signUpANewDriver();//complete
 void editDriversInfo();//complete
@@ -29,7 +29,6 @@ int editDriversInfoInAllUsersFile(int, int, int, int, char[]);//complete
 int computeNewDistance(int, int);//complete
 int computeNewTime(int, char[]);//complete
 int computeNewPrice(int, char[]);//complete
-void price();
 
 
 void adminMain() //function to clear what admin wants to do
@@ -550,6 +549,7 @@ void editTrips()
                     }
                 }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, startTripMinute_trip, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                cout << "Edit trip successfully done.\n\n";
                 break;
             }
             else if(menuNumber == 5)//start minute
@@ -593,6 +593,7 @@ void editTrips()
                     }
                 }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, startTripHour_trip, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                cout << "Edit trip successfully done.\n\n";
                 break;
             }
             else if(menuNumber == 6)
@@ -638,6 +639,7 @@ void editTrips()
                     }
                 }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
+                cout << "Edit trip successfully done.\n\n";
                 break;
             }
             else if(menuNumber == 0)//go back
@@ -1273,11 +1275,6 @@ void editDriversInfo()
     }
     //close open file
     fclose(driversFile);
-}
-
-void price()
-{
-    //code
 }
 
 //define a function for edit drivers info in all users file

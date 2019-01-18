@@ -7,6 +7,7 @@
 #include "Admin.h"
 #include "drivers.h"
 #include "ticket.h"
+#include "user.h"
 
 using namespace std;
 
@@ -174,7 +175,7 @@ void logIn() //function to log in
                     else if(tempUserName == 3)
                     {
                         // goes to user function
-						ticketuser(int userName_temp,int pass_temp,int accountNumber,char firstName,char lastName,char phone,char reagent);
+                        userMain(username, accountNumber);
                         cout << "Hi " << firstName << endl;
 						
                         break;

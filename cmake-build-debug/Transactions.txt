@@ -1,1 +1,0 @@
-username	accountNumber	firstName	lastName	phone	vehicle	priceOfTheTicket	TrackingCode
