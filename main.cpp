@@ -1,5 +1,5 @@
 //guest needs to complete
-
+//khare
 
 #include <iostream>
 #include <stdio.h>
@@ -39,6 +39,7 @@ int main()
         else if(n == 3)
         {
             //goes to function guest
+			guestmain();
         }
         else if(n == 0)
         {
@@ -139,7 +140,7 @@ void signUp() //function to sign up
 void logIn() //function to log in
 {
     //needs to be completed
-    int i;
+    int i,r;
     int username,password,tempUserName;
     cout << "Enter your username please...\n";
     cin >> username;
@@ -152,40 +153,43 @@ void logIn() //function to log in
         return;
     }
     int userName_temp, pass_temp, accountNumber;
-    char firstName[30],lastName[30],phone[30];
+    char firstName[21],lastName[21],phone[21],reagent[21];
     for(i = 0;i<100000;i++)
     {
-        fscanf(allUsersFile,"%d\t%d\t%d\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName,lastName, phone);
-        if(username == userName_temp)
+        r = fscanf(allUsersFile,"%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName,lastName, phone, reagent);
+        if(r != EOF)
         {
-            if(password == pass_temp)
+            if(username == userName_temp)
             {
-                tempUserName = username / 100000;
-                if(tempUserName == 1)
+                if(password == pass_temp)
                 {
-                    //goes to admin function
-                    cout << "Hi " << firstName << endl;
-                    adminMain();
+                    tempUserName = username / 100000;
+                    if(tempUserName == 1)
+                    {
+                        //goes to admin function
+                        cout << "Hi " << firstName << endl;
+                        adminMain();
+                        return;
+                    }
+                    else if(tempUserName == 3)
+                    {
+                        // goes to user function
+                        cout << "Hi " << firstName << endl;
+                        break;
+                    }
+                    else if(tempUserName == 5)
+                    {
+                        //goes to driver function
+                        cout << "Hi " << firstName << endl;
+                        driversMain(username);
+                        break;
+                    }
+                }
+                else
+                {
+                    cout << "The password is incorrect!\n";
                     return;
                 }
-                else if(tempUserName == 2)
-                {
-                    //goes to driver function
-                    cout << "Hi " << firstName << endl;
-                    driversMain();
-                    break;
-                }
-                else if(tempUserName == 3)
-                {
-                    // goes to user function
-                    cout << "Hi " << firstName << endl;
-                    break;
-                }
-            }
-            else
-            {
-                cout << "The password is incorrect!\n";
-                return;
             }
         }
     }

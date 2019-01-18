@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/mostafa/Documents/c++/Project/cmake-build-debug"/>
+				<Option working_dir="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/mostafa/Documents/c++/Project/cmake-build-debug"/>
+				<Option working_dir="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project">
-				<Option output="/home/mostafa/Documents/c++/Project/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mostafa/Documents/c++/Project/cmake-build-debug"/>
+				<Option output="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project/fast">
-				<Option output="/home/mostafa/Documents/c++/Project/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mostafa/Documents/c++/Project/cmake-build-debug"/>
+				<Option output="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,36 +67,36 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/mostafa/Documents/c++/Project/cmake-build-debug"/>
+				<Option working_dir="/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mostafa/Documents/c++/project/FirstTermProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/mostafa/Documents/c++/Project/Admin.h">
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/Admin.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="/home/mostafa/Documents/c++/Project/drivers.h">
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/drivers.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="/home/mostafa/Documents/c++/Project/guest.h">
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/guest.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="/home/mostafa/Documents/c++/Project/main.cpp">
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/main.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="/home/mostafa/Documents/c++/Project/CMakeLists.txt">
+		<Unit filename="/home/mostafa/Documents/c++/project/FirstTermProject/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
