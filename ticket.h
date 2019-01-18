@@ -19,43 +19,38 @@
 using namespace std;
 //functions declaration
 
-void Ticket();
+void ticketguest();
+void ticketMain();
 void printInAccountFile(int,int,int,int,int,int,int,int,int);
 
 
-void ticketMain() {//whatdo you want to do
+/*void ticketMain(int number) {//whatdo you want to do
     int n;
-    while (1)
+    cout << "Enter 0 to go back and 1 to continue\n";
+    cin >> n;
+    if (n == 1)
     {
-
-
-        cout << "Select the desired process\n\n";
-        cout << "1. continue the process of booking the ticket!\n";
-        cout << "0. Exit\n";
-        cin >> n;
-
-
-        if (n == 1) {
-
-            Ticket();
-        }
-        else if (n == 0) {
-
-            return;
+        if(number == 1)
+        {
+            //go to ticketGuest function
+            ticketguest();
         }
         else
-        {
-            cout << "The number you inserted is not correct!\n\n";
-            return;
-        }
-
     }
-}
+}*/
 
 
 
 
-void Ticket() {
+void ticketGuest()
+{
+    int number;
+    cout << "Enter 0 to go back and 1 to continue.\n";
+    cin >> number;
+    if(number == 0)
+    {
+        return;
+    }
     int i;
     FILE *reserve = fopen("ticket.txt", "a");
     FILE *trip = fopen("Trips.txt", "r");
@@ -223,31 +218,6 @@ void Ticket() {
     fclose(trip);
     fclose(accountsFile);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver)
 {

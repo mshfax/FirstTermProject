@@ -7,6 +7,7 @@
 #include "Admin.h"
 #include "guest.h"
 #include "drivers.h"
+#include "ticket.h"
 
 using namespace std;
 
@@ -39,7 +40,7 @@ int main()
         else if(n == 3)
         {
             //goes to function guest
-			guestMain(1);
+            ticketGuest();
         }
         else if(n == 0)
         {
