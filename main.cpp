@@ -39,7 +39,7 @@ int main()
         else if(n == 3)
         {
             //goes to function guest
-			guestmain();
+			guestMain(1);
         }
         else if(n == 0)
         {
@@ -175,6 +175,7 @@ void logIn() //function to log in
                     {
                         // goes to user function
                         cout << "Hi " << firstName << endl;
+
                         break;
                     }
                     else if(tempUserName == 5)

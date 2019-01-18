@@ -17,7 +17,7 @@ void Reservation();
 
 
 
-void guestmain() {//what guest want to do
+void guestMain() {//what guest want to do
 	int n;
 	while (1)
 	{
