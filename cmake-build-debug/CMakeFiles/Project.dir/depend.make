@@ -3,6 +3,6 @@
 
 CMakeFiles/Project.dir/main.cpp.o: ../Admin.h
 CMakeFiles/Project.dir/main.cpp.o: ../drivers.h
-CMakeFiles/Project.dir/main.cpp.o: ../guest.h
 CMakeFiles/Project.dir/main.cpp.o: ../main.cpp
+CMakeFiles/Project.dir/main.cpp.o: ../ticket.h
 

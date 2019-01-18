@@ -506,7 +506,6 @@ void editTrips()
                         fseek(tripsFile, -1, SEEK_CUR);
                     }
                 }
-                cout << 12 << endl;
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, NewOrigin, NewDestination, NewDistance, startTripHour_trip, startTripMinute_trip, tempHourTime,(int) tempMinuteTime, vehicle_trip, NewPrice);
                 cout << "Edit trip successfully done.\n\n";
                 break;
@@ -516,6 +515,40 @@ void editTrips()
                 int NewStartHour;
                 cout << "Enter new Hour\n";
                 cin >> NewStartHour;
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, " ");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, startTripMinute_trip, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
                 break;
             }
@@ -524,6 +557,41 @@ void editTrips()
                 int NewStartMinute;
                 cout << "Enter new Minute\n";
                 cin >> NewStartMinute;
+                //erase line
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, " ");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, startTripHour_trip, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
                 break;
             }
@@ -534,6 +602,41 @@ void editTrips()
                 cin >> NewStartHour;
                 cout << "Enter new Minute\n";
                 cin >> NewStartMinute;
+
+                int j;
+                char temp;      //for declare the end of a  line
+                fseek(tripsFile, -1, SEEK_CUR);
+                for(j = 0;;j++)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
+                for(int k = 0; k <= j; k++)
+                {
+                    fprintf(tripsFile, " ");
+                }
+                fseek(tripsFile, -1, SEEK_CUR);
+                while(1)
+                {
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    fscanf(tripsFile,"%c", &temp);
+                    if(temp == 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                    }
+                }
                 fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d", username, origin_trip, destination_trip, distance_trip, NewStartHour, NewStartMinute, tripDurationHour_trip, tripDurationMinute_trip, vehicle_trip, price_trip);
                 break;
             }
