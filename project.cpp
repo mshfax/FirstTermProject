@@ -8,19 +8,33 @@ int main()
 {	
  HANDLE  hConsole;
 	int d;
-  	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 9);
+
 int n,numb,numa,numt,a,b,num=1;
 scanf("%d %d %d",&numb,&numa,&numt);
 printf("_bus(1) : \n_airplain(2) : \n_train(3) : \n");
 scanf("%d",&n);
-SetConsoleTextAttribute(hConsole, 12);
-if(n==1)
-	n=numb;
-if(n==2)
+FILE *ptr;
+if(n==1){
+n=numb;
+ptr=fopen("ticks.txt","r+");
+fprintf(ptr,"bus");
+fclose(ptr);
+}
+	
+if(n==2){
 	n=numa;
-if(n==3)
-	n=numt;
+
+ptr=fopen("ticks.txt","r+");
+fprintf(ptr,"airplane");
+fclose(ptr);
+}
+if(n==3){
+n=numt;
+
+ptr=fopen("ticks.txt","r+");
+fprintf(ptr,"train : ");
+fclose(ptr);
+}
 int *p=new int [n];
 int *q=new int [n];
 
@@ -65,11 +79,11 @@ while(1)
 		}
 	printf("\n\nPLEASE ENTER NUMBER : \n");
 	scanf("%d",&num);
-FILE *ptr;
 ptr=fopen("ticks.txt","a");
 fprintf(ptr,"%d\t",num);
 fclose(ptr);
-	q[num-1]++;
+
+q[num-1]++;
 	system("cls");
 }												
 return 0;	
