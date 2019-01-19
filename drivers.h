@@ -82,15 +82,16 @@ void declareTrip(int username)   //computing the finish hour has some don't know
 	cin >> hourStartTrip;
 	cout << "Enter start minute of the trip\n";
 	cin >> minuteStartTrip;
-	cout << "Set the date of the trip   year/month/day";
-	cout << "year:";
+	cout << "Set the date of the trip   year/month/day\n";
+	/*cout << "year:";
 	cin >> year;
 	cout << "\n";
 	cout << "month:";
 	cin >> month;
 	cout << "\n";
 	cout << "day:";
-	cin >> day;
+	cin >> day;*/
+	scanf("%d/%d/%d", &year, &month, &day);
 	//find the cities and save the origin and destination x and y
 	//origin
 	int originX = 0, originY = 0, tempOrigin, a = 0, b = 0;
