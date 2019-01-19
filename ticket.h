@@ -194,6 +194,52 @@ void ticketGuest()//completed
     fclose(accountsFile);
     fclose(driverFile);
 }
+//=============================
+void userTicket(int username, int account_Number, int password)
+{
+	int i, r;
+	FILE * allUsersFile = fopen("allUsers.txt", "r");
+	if (allUsersFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return;
+	}
+	int userName_temp, pass_temp, accountNumber;
+	char firstName[21], lastName[21], phone[21], reagent[21];
+	for (i = 0; i<100000; i++)
+	{
+		fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, reagent);
+		if (username == userName_temp)
+		{
+			if (password == pass_temp)
+			{
+
+
+
+				cout << "Hi" << "\t" << firstName << "\n\n";
+				cout << "Your route:\t" << origin_temp << "->" << destination_temp << "\n\n";
+				cout << "The distance between two cities:  " << way_temp << "\n\n";
+				printf("departure time:\t%d:%d\n", startTimeHour, startTimeMinute);
+				printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
+				cout << "The rate of each seat:\t" << cast_temp << "\n\n";
+				cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
+				cout << "Phone:\t" << phone << "\n\n";
+				cout << "Seat number:\t" << "_" << "\n\n\n";
+				cout << "press 1 to reseve\n";
+				cout << "or press 0 to exit\n";
+
+
+
+
+			}
+			else
+			{
+				cout << "The password is incorrect!\n";
+				return;
+			}
+		}
+
+//===================================
 
 void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[])
 {
