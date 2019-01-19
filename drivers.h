@@ -255,13 +255,14 @@ void seePassengersInfo()
 	}
 	char firstName[30], lastName[30], trackingCode[10];
 	int driversUsername, origin, destination;
-	int timemin, timehour;
+	int timemin, timehour, year_ttrip, month_ttrip, day_ttrip;
 	cout << "firstName" << " " << "lastName" << "  " << "origin" << " " << "destination" << "  " << "trakingCode" << "\n";
 	int c;
 	c = getc(ticketFile);
 	for (int i = 0; i<100000 && c != EOF; i++)
 	{
-		fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%s", firstName, lastName, &driversUsername, &origin, &destination, &timemin, &timehour, trackingCode);
+		fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\n", firstName, lastName, &driverUsername, &origin, &destination,&timein, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, &trackingCode);
+		
 		cout << firstName << " " << lastName << "  ";
 		cout << origin << " " << destination << "  ";
 		printf("%d:%d", timehour, timemin);
@@ -270,7 +271,7 @@ void seePassengersInfo()
 	}
 	fclose(ticketFile);
 }
-
+//=-=-=-----------------------------------------------------------
 void cancelDelayTrip()
 {
 	//code
