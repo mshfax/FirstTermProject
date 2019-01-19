@@ -32,6 +32,9 @@ int computeNewDistance(int, int);//complete
 int computeNewTime(int, char[]);//complete
 int computeNewPrice(int, char[]);//complete
 void cancelOrDelay();
+void printInAccountFileAndTransactions(int ,int , int , int , int , int , int , int , int , char []);
+int findPass(int);
+int findAccountNumber(int);
 
 
 void adminMain() //function to clear what admin wants to do
@@ -198,8 +201,7 @@ void editTrips()
 {
 	//needs to be completed
 	FILE * tripsFile = fopen("Trips.txt", "r+");
-	FILE * ticketFile = fopen("ticket.txt", "r+");
-	if (tripsFile == NULL || ticketFile == NULL)
+	if (tripsFile == NULL)
 	{
 		cout << "The File opening was Unsuccessful!\n";
 		return;
@@ -1521,6 +1523,15 @@ void cancelOrDelay()
     if(number == 1)
     {
 
+
+
+
+
+
+
+
+
+
     }
     else if(number == 2)
     {
@@ -1560,24 +1571,318 @@ void cancelOrDelay()
                 if(time >= 60)
                 {
                     //90%
-
-
-
+					float cast = cast_temp * (0.9);
+					float userCash, adminCash, driverCash;
+					userCash = cast;
+					adminCash = cast * (0.1);
+					driverCash = cast * (0.9);
+					int user_account = findAccountNumber(username_temp);
+					const int admin_account = 200000;
+					const int admin_pass = 1318;
+					int driver_account = findAccountNumber(driverUsername);
+					int userPass = findPass(user_account);
+					int driver_Pass = findPass(driver_account);
+					printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode);
+					break;
                 }
                 else
                 {
                     //50%
-                }
-
-
+					float cast = cast_temp * (0.5);
+					float userCash, adminCash, driverCash;
+					userCash = cast;
+					adminCash = cast * (0.1);
+					driverCash = cast * (0.9);
+					int user_account = findAccountNumber(username_temp);
+					const int admin_account = 200000;
+					const int admin_pass = 1318;
+					int driver_account = findAccountNumber(driverUsername);
+					int userPass = findPass(user_account);
+					int driver_Pass = findPass(driver_account);
+					printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode);
+					break;
+				}
             }
         }
-
-
         fclose(ticketFile);
     }
     else
     {
         cout << "Sorry the number you have entered is not correct!!\n";
     }
+}
+
+
+void printInAccountFileAndTransactions(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[])
+{
+	FILE*transactionFile = fopen("transaction.txt", "a");
+	if (transactionFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return;
+	}
+
+	FILE * accountsFile = fopen("accounts.txt", "r+");
+	if (accountsFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return;
+	}
+	int accountNumber_temp, pass_temp, cash;
+	fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+	int i;
+	for (i = 0; i<100000; i++)
+	{
+		if (accountNumber_temp == accountNumber_user)
+		{
+			if (pass_temp == password_user)
+			{
+				//erase the line
+				int j;
+				char temp;      //for declare the end of a  line
+				fseek(accountsFile, -1, SEEK_CUR);
+				for (j = 0;; j++)
+				{
+					fseek(accountsFile, -1, SEEK_CUR);
+					fscanf(accountsFile, "%c", &temp);
+					if (temp == 10)
+					{
+						break;
+					}
+					else
+					{
+						fseek(accountsFile, -1, SEEK_CUR);
+					}
+
+				}
+				for (int k = 0; k <= j; k++)
+				{
+					fprintf(accountsFile, " ");
+				}
+				fseek(accountsFile, -1, SEEK_CUR);
+				while (1)
+				{
+					fseek(accountsFile, -1, SEEK_CUR);
+					fscanf(accountsFile, "%c", &temp);
+					if (temp == 10)
+					{
+						break;
+					}
+					else
+					{
+						fseek(accountsFile, -1, SEEK_CUR);
+					}
+				}
+				cash = cash + userCash;
+				fprintf(transactionFile, "%d\t+%d\t", accountNumber_user, userCash);
+				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_user, password_user, cash);
+				break;
+			}
+			else
+			{
+				cout << "Sorry the password you entered is incorrect.\n";
+				break;
+			}
+		}
+		else
+		{
+			fscanf(accountsFile, "\n%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+		}
+	}
+	if (i >= 100000)
+	{
+		cout << "Sorry the account number you have entered is not correct!\n";
+		return;
+	}
+	cash = 0;
+	fseek(accountsFile, 0, SEEK_SET);
+	fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+	for (i = 0; i<100000; i++)
+	{
+		if (accountNumber_temp == accountNumber_admin)
+		{
+			if (pass_temp == password_admin)
+			{
+				//erase the line
+				int j;
+				char temp;      //for declare the end of a  line
+				fseek(accountsFile, 0, SEEK_SET);
+				/*for(j = 0;;j++)
+				{
+				fseek(accountsFile, -1, SEEK_CUR);
+				fscanf(accountsFile,"%c", &temp);
+				if(temp == 10)
+				{
+				break;
+				}
+				else
+				{
+				fseek(accountsFile, -1, SEEK_CUR);
+				}
+				}*/
+				temp = getc(accountsFile);
+				for (int k = 0; temp != 10; k++)
+				{
+					fseek(accountsFile, -1, SEEK_CUR);
+					fprintf(accountsFile, " ");
+					temp = getc(accountsFile);
+				}
+				fseek(accountsFile, -1, SEEK_CUR);
+				fseek(accountsFile, 0, SEEK_SET);
+				/*while(1)
+				{
+				fseek(accountsFile, -1, SEEK_CUR);
+				fscanf(accountsFile,"%c", &temp);
+				if(temp == 10)
+				{
+				break;
+				}
+				else
+				{
+				fseek(accountsFile, -1, SEEK_CUR);
+				}
+				}*/
+				cash = cash - adminCash;
+				fprintf(transactionFile, "%d\t-%d\t", accountNumber_admin, adminCash);
+				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_admin, password_admin, cash);
+				break;
+
+			}
+			else
+			{
+				cout << "Sorry the password you entered is incorrect.\n";
+				break;
+			}
+		}
+		else
+		{
+			fscanf(accountsFile, "\n%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+		}
+	}
+	if (i >= 100000)
+	{
+		cout << "Sorry the account number you have entered is not correct!\n";
+		return;
+	}
+	fseek(accountsFile, 0, SEEK_SET);
+	fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+	for (i = 0; i<100000; i++)
+	{
+		if (accountNumber_temp == accountNumber_driver)
+		{
+			if (pass_temp == password_driver)
+			{
+				//erase the line
+				int j;
+				char temp;      //for declare the end of a  line
+				fseek(accountsFile, -1, SEEK_CUR);
+				for (j = 0;; j++)
+				{
+					fseek(accountsFile, -1, SEEK_CUR);
+					fscanf(accountsFile, "%c", &temp);
+					if (temp == 10)
+					{
+						break;
+					}
+					else
+					{
+						fseek(accountsFile, -1, SEEK_CUR);
+					}
+				}
+				for (int k = 0; k <= j; k++)
+				{
+					fprintf(accountsFile, " ");
+				}
+				fseek(accountsFile, -1, SEEK_CUR);
+				while (1)
+				{
+					fseek(accountsFile, -1, SEEK_CUR);
+					fscanf(accountsFile, "%c", &temp);
+					if (temp == 10)
+					{
+						break;
+					}
+					else
+					{
+						fseek(accountsFile, -1, SEEK_CUR);
+					}
+				}
+
+
+				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
+				cash = cash - driverCash;
+				fprintf(transactionFile, "%d\t-%d\t%s\n", accountNumber_driver, driverCash, trackingCode);
+				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, cash);
+				break;
+			}
+			else
+			{
+				cout << "Sorry the password you entered is incorrect.\n";
+				break;
+			}
+		}
+		else
+		{
+			fscanf(accountsFile, "\n%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
+		}
+	}
+	if (i >= 100000)
+	{
+		cout << "Sorry the account number you have entered is not correct!\n";
+		return;
+	}
+	fclose(accountsFile);
+	fclose(transactionFile);
+}
+
+int findPass(int accountNumber)
+{
+	FILE * accountFile = fopen("accounts.txt", "r");
+	if(accountFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return -1;
+	}
+	int account_temp, pass_temp, cash;
+	int password;
+	for (int i = 0; i<100000; i++)
+	{
+		fscanf(accountFile, "%d\t%d\t%d\n", &account_temp, &pass_temp, &cash);
+		if(account_temp == accountNumber)
+		{
+			password = pass_temp;
+			break;
+		}
+	}
+	fclose(accountFile);
+	return password;
+}
+
+int findAccountNumber(int username)
+{
+	FILE * allUsersFile = fopen("allUsers.txt", "r");
+	if (allUsersFile == NULL)
+	{
+		cout << "The File opening was Unsuccessful!\n";
+		return -1;
+	}
+	int userName_temp, pass_temp, accountNumber;
+	char firstName[30], lastName[30], phone[15], reagent[15];
+	int account;
+	int temp = getc(allUsersFile);
+	fseek(allUsersFile, -1, SEEK_CUR);
+	for (int k = 0; temp != EOF; k++)
+	{
+		fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, reagent);
+		temp = getc(allUsersFile);
+		fseek(allUsersFile, -1, SEEK_CUR);
+		fscanf(allUsersFile, "\n");
+		if(userName_temp == username)
+		{
+			account = accountNumber;
+			break;
+		}
+	}
+	fclose(allUsersFile);
+	return account;
 }

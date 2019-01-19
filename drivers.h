@@ -259,15 +259,16 @@ void seePassengersInfo()
 	cout << "firstName" << " " << "lastName" << "  " << "origin" << " " << "destination" << "  " << "trakingCode" << "\n";
 	int c;
 	c = getc(ticketFile);
+	fseek(ticketFile, -1, SEEK_CUR);
 	for (int i = 0; i<100000 && c != EOF; i++)
 	{
-		fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\n", firstName, lastName, &driverUsername, &origin, &destination,&timein, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, &trackingCode);
-		
+		fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\n", firstName, lastName, &driversUsername, &origin, &destination,&timemin, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, trackingCode);
+		c = getc(ticketFile);
+		fseek(ticketFile, -1, SEEK_CUR);
 		cout << firstName << " " << lastName << "  ";
 		cout << origin << " " << destination << "  ";
 		printf("%d:%d", timehour, timemin);
 		printf("%s\n", trackingCode);
-		c = getc(ticketFile);
 	}
 	fclose(ticketFile);
 }
