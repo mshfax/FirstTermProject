@@ -15,28 +15,10 @@
 #include <iostream>
 #include <string.h>
 
-
 using namespace std;
 //functions declaration
 void printInAccountFile(int,int,int,int,int,int,int,int,int,char[]);
-
-
-/*void ticketMain(int number) {//whatdo you want to do
-    int n;
-    cout << "Enter 0 to go back and 1 to continue\n";
-    cin >> n;
-    if (n == 1)
-    {
-        if(number == 1)
-        {
-            //go to ticketGuest function
-            ticketguest();
-        }
-        else
-    }
-}*/
-
-
+int findTrip();
 
 
 void ticketGuest()
@@ -63,7 +45,7 @@ void ticketGuest()
     int driver_pass;
     int origin;
     int destination;
-    int driver_mony = 0, admin_mony = 0, passenger_mony = 0;
+    float driver_mony , admin_mony , passenger_mony;
     int taid;
     int Nvehicle;//the vahicle number
     int origin_temp, destination_temp, driverUsername, startTimeHour, startTimeMinute, timeDurationHour, timeDurationMinute, way_temp, cast_temp;
@@ -73,6 +55,9 @@ void ticketGuest()
     char firstName[30], lastName[30];
     char phone[30];
     char vehicle[20], vehicle_temp[20];
+    bool breakbool = false;
+    bool b = true;
+    int c;//for realize end of a file
     cout << "Enter your first name please...\n\n";
     scanf("%s", firstName);
     cout << "Enter your last name:\n\n";
@@ -100,188 +85,123 @@ void ticketGuest()
     {
         cout << "The number you inserted is not correct!";
     }
-
-    cout << "Enter your phone number:\n\n";
-    scanf("%s", phone);
-    cout << "Enter your account number:\n\n";
-    cin >> account;
-    cout << "\n";
-    cout << "Enter the password:\n\n";
-    cout << "\n";
-    cin >> pass;
-    cout << "Confirm the password:\n\n";
-    cin >> pass_temp;
-    cout << "\n\n";
-    if (pass == pass_temp)
+    if(findTrip())
     {
-        for (i = 0; i < 100000; i++)
-        {
-            fscanf(accountsFile, "%d\t%d\t%d\n", &account_temp, &pass_temp, &cash);
-            if (account_temp == account)
-            {
-                if (pass_temp == pass)
-                {
-                    for (int i = 0;; i++)
-                    {
-                        fscanf(tripFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", &driverUsername, &origin_temp, &destination_temp, &way_temp, &startTimeHour, &startTimeMinute, &timeDurationHour, &timeDurationMinute, vehicle_temp, &cast_temp);
-                        if (origin == origin_temp && destination == destination_temp && strcmp(vehicle,vehicle_temp) == 0)
-                        {
-                            /*if (driverUsername == account_temp)
-                            {
-                                driver_pass = pass_temp;
-                            }*/
-                            cout << "Hi" << "\t" << firstName << "\n\n";
-                            cout << "Your route:\t" << origin_temp << "_" << destination_temp << "\n\n";
-                            cout << "The distance between two cities:  " << way_temp << "\n\n";
-                            printf("departure time:\t%d:%d\n", startTimeHour, startTimeMinute);
-                            printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
-                            cout << "The rate of each seat:\t" << cast_temp << "\n\n";
-                            cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
-                            cout << "Phone:\t" << phone << "\n\n";
-                            cout << "Seat number:\t" << "_" << "\n\n\n";
-                            cout << "press 1 to reseve\n";
-                            cout << "or press 0 to exit\n";
-                            cin >> taid;
-                            if (taid == 1)
-                            {
-                                driver_mony = cast_temp*(9 / 10);
-                                admin_mony =cast_temp*(1 / 10);
-                                passenger_mony = cast_temp;
-
-                                //give a randomNumber
-                                srand(time(NULL));
-                                char arr[] = "123456789";
-                                char trackingCode[10];
-                                for(int i = 0; i<9; i++)
-                                {
-                                    trackingCode[i] = arr[rand()%9];
-                                }
-                                trackingCode[10] = '\0';
-
-
-                                cout << driverUsername << endl;
-
-                                {
-                                    //search in drivers file and give account number and password
-                                    int usernameTemp, passwordTemp, accountNumberTemp;
-                                    char firstNameTemp[30], lastNameTemp[30], phoneTemp[15], vehicleTemp[15];
-                                    int t = getc(driverFile);
-                                    while(t!=EOF)
-                                    {
-                                        fscanf(driverFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &usernameTemp, &passwordTemp, &accountNumberTemp, firstNameTemp, lastNameTemp, phoneTemp, vehicle_temp);
-                                        if(usernameTemp == driverUsername)
-                                        {
-                                            accountNumber_driver = accountNumberTemp;
-                                            driver_pass = passwordTemp;
-                                            break;
-                                        }
-                                        t = fgetc(driverFile);
-                                    }
-                                }
-
-                                cout << accountNumber_driver << endl;
-                                cout << driver_pass << endl;
-
-
-                                printInAccountFile(passenger_mony,admin_mony,driver_mony,account,accountNumber_admin,accountNumber_driver,pass,password_admin,driver_pass, trackingCode);
-                                fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%s", firstName, lastName, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, trackingCode);
-                                cout << "mission accomplished\n";
-                                break;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    cout << "Sorry the password is incorrect...\n";
-                }
-            }
-        }
-        if (i == 100000)
-        {
-            cout << "The account number you have entered is incorrect! Try again please...\n";
-        }
+        cout << "Enter your phone number:\n\n";
+        scanf("%s", phone);
+        cout << "Enter your account number:\n\n";
+        cin >> account;
+        cout << "\n";
+        cout << "Enter the password:\n\n";
+        cout << "\n";
+        cin >> pass;
     }
     else
     {
-        cout << "two passwords are not the same !!!\n";
+        cout << "Sorry there is no trip at your nest. Try again later...\n";
         return;
     }
 
 
+    for (i = 0; i < 100000; i++)
+    {
+        fscanf(accountsFile, "%d\t%d\t%d\n", &account_temp, &pass_temp, &cash);
+        if (account_temp == account)
+        {
+            if (pass_temp == pass)
+            {
+                for (int i = 0;; i++)
+                {
+                    fscanf(tripFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", &driverUsername, &origin_temp, &destination_temp, &way_temp, &startTimeHour, &startTimeMinute, &timeDurationHour, &timeDurationMinute, vehicle_temp, &cast_temp);
+                    if (origin == origin_temp && destination == destination_temp && strcmp(vehicle,vehicle_temp) == 0)
+                    {
+                        b = false;
+
+                        cout << "Hi" << "\t" << firstName << "\n\n";
+                        cout << "Your route:\t" << origin_temp << "->" << destination_temp << "\n\n";
+                        cout << "The distance between two cities:  " << way_temp << "\n\n";
+                        printf("departure time:\t%d:%d\n", startTimeHour, startTimeMinute);
+                        printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
+                        cout << "The rate of each seat:\t" << cast_temp << "\n\n";
+                        cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
+                        cout << "Phone:\t" << phone << "\n\n";
+                        cout << "Seat number:\t" << "_" << "\n\n\n";
+                        cout << "press 1 to reseve\n";
+                        cout << "or press 0 to exit\n";
+                        cin >> taid;
+                        if (taid == 1)
+                        {
+                            passenger_mony = cast_temp;
+                            driver_mony = cast_temp * (0.9);
+                            admin_mony = cast_temp * (0.1);
+
+                            //give a randomNumber
+                            srand(time(NULL));
+                            char arr[] = "123456789";
+                            char trackingCode[10];
+                            for(int i = 0; i<9; i++)
+                            {
+                                trackingCode[i] = arr[rand()%9];
+                            }
+                            trackingCode[9] = '\0';
+                            {
+                                //search in drivers file and give account number and password
+                                int usernameTemp, passwordTemp, accountNumberTemp;
+                                char firstNameTemp[30], lastNameTemp[30], phoneTemp[15], vehicleTemp[15];
+                                int t = getc(driverFile);
+                                fseek(driverFile, -1, SEEK_CUR);
+                                while(t!=EOF)
+                                {
+                                    fscanf(driverFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s", &usernameTemp, &passwordTemp, &accountNumberTemp, firstNameTemp, lastNameTemp, phoneTemp, vehicleTemp);
+                                    if(usernameTemp == driverUsername)
+                                    {
+                                        accountNumber_driver = accountNumberTemp;
+                                        driver_pass = passwordTemp;
+                                        break;
+                                    }
+                                    t = fgetc(driverFile);
+                                }
+                            }
+                            printInAccountFile((int) passenger_mony,(int) admin_mony,(int) driver_mony,account,accountNumber_admin,accountNumber_driver,pass,password_admin,driver_pass, trackingCode);
+                            fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d:%d\t%s\n", firstName, lastName, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, trackingCode);
+                            cout << "mission accomplished\n";
+                            breakbool = true;
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                if(b == true)
+                {
+                    cout << "There is no trip at your nest\n";
+                    return;
+                }
+                if(breakbool == true)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                cout << "Sorry the password is incorrect...\n";
+            }
+        }
+    }
+    if (i == 100000)
+    {
+        cout << "The account number you have entered is incorrect! Try again please...\n";
+    }
     fclose(ticketFile);
     fclose(tripFile);
     fclose(accountsFile);
     fclose(driverFile);
 }
 
-
-
-/*void ticketuser(int userName_temp, int pass_temp, int accountNumber, char firstName, char lastName, char phone, char reagent)
+void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[])
 {
-
-	for (int i = 0;; i++)
-	{
-
-
-		fscanf(trip, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%s\t%d\n", &account_driver_temp, &origin_temp, &way_temp, &destination_temp, &time_origin_temp, &time_destination_temp, &vehicle_temp, &cast_temp);
-		if (origin == origin_temp&&destination == destination_temp)
-		{
-
-
-			if (account_driver_temp == account_temp)
-			{
-				driver_pass = pass_temp;
-			}
-			cout << "Hi" << "\t" << firstName << "\n\n";
-			cout << "Your route:\t" << origin_temp << "_" << destination_temp << "\n\n";
-			cout << "The distance between two cities:  " << way_temp << "\n\n";
-			cout << "departure time:\t" << time_origin_temp << "\t" << "time of travel:\t" << time_destination_temp << "\n\n";
-			cout << "The rate of each seat:\t" << cast_temp << "\n\n";
-			cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
-			cout << "Phone:\t" << phone << "\n\n";
-			cout << "Seat number:\t" << "_" << "\n\n\n";
-			cout << "press 1 to reseve\n";
-			cout << "or press 0 to exit\n";
-			cin >> taid;
-			if (taid == 1)
-			{
-				driver_mony = cast_temp*(9 / 10);
-				admin_mony = cast_temp*(1 / 10);
-				passenger_mony = cast_temp;
-
-				printInAccountFile(passenger_mony, admin_mony, driver_mony, account, accountNumber_admin, account_driver_temp, pass, password_admin, driver_pass);
-
-				cout << "mission accomplished\n";
-
-			}
-
-
-			else
-			{
-				break;
-			}
-			break;
-		}
-		else
-		{
-			cout << "The vehicle you intended for your trip was not found\n";
-			break;
-		}
-
-	}
-
-
-}*/
-
-
-void printInAccountFile(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[10])
-{
-
 	FILE*transactionFile = fopen("transaction.txt", "a");
 	if (transactionFile == NULL)
 	{
@@ -347,7 +267,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect. 1\n";
+                cout << "Sorry the password you entered is incorrect.\n";
                 break;
             }
         }
@@ -361,7 +281,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
         cout << "Sorry the account number you have entered is not correct!\n";
         return;
     }
-	///...
+    cash = 0;
     fseek(accountsFile, 0, SEEK_SET);
     fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
     for (i = 0; i<100000; i++)
@@ -417,7 +337,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect. 2\n";
+                cout << "Sorry the password you entered is incorrect.\n";
                 break;
             }
         }
@@ -484,7 +404,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
             }
             else
             {
-                cout << "Sorry the password you entered is incorrect. 3\n";
+                cout << "Sorry the password you entered is incorrect.\n";
                 break;
             }
         }
@@ -495,9 +415,14 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
     }
     if(i >= 100000)
     {
-        cout << "Sorry the account number you have entered is not correct!  4\n";
+        cout << "Sorry the account number you have entered is not correct!\n";
         return;
     }
     fclose(accountsFile);
 	fclose(transactionFile);
+}
+
+int findTrip()
+{
+    //FILE *
 }

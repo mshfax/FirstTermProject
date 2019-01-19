@@ -41,6 +41,7 @@ int main()
         {
             //goes to function guest
             ticketGuest();
+            break;
         }
         else if(n == 0)
         {
@@ -52,6 +53,7 @@ int main()
             return -1;
         }
     }
+    return 0;
 }
 
 //definition functions
