@@ -31,6 +31,7 @@ int editDriversInfoInAllUsersFile(int, int, int, int, char[]);//complete
 int computeNewDistance(int, int);//complete
 int computeNewTime(int, char[]);//complete
 int computeNewPrice(int, char[]);//complete
+void cancelOrDelay();
 
 
 void adminMain() //function to clear what admin wants to do
@@ -46,6 +47,7 @@ void adminMain() //function to clear what admin wants to do
 		cout << "4. Edit drivers info.\n";
 		cout << "5. Edit trips info.\n";
 		cout << "6. Edit vehicles info.\n";
+		cout << "7. Cancel or delay in a trip\n";
 		cout << "0. Exit.\n\n";
 		//end function menu
 		cin >> n;
@@ -79,6 +81,10 @@ void adminMain() //function to clear what admin wants to do
 			//goes to function to Edit vehicles info
 			editVehicles();
 		}
+		else if(n == 7)
+        {
+		    //goes to function to cancel or edit a trip
+        }
 		else if (n == 0)
 		{
 			return;
@@ -1502,4 +1508,9 @@ int computeNewPrice(int distance, char vehicle[15])
 	tripPrice = nearbyint(tripPrice);
 	tripPrice *= 1000;
 	return (int)tripPrice;
+}
+
+void cancelOrDelay()
+{
+
 }

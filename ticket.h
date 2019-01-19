@@ -23,7 +23,6 @@ int findTrip(int , int , char[]);
 
 void ticketGuest()//completed
 {
-
     int number;
     cout << "Enter 0 to go back and 1 to continue.\n";
     cin >> number;

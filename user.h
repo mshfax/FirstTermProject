@@ -13,6 +13,9 @@
 
 using namespace std;
 
+//declation functions
+void seeHistoryOfTickets(int ,int, int);
+
 void userMain(int username, int account_Number, int password)
 {
 	cout << "Enter the number of task you want to do please\n";
@@ -25,11 +28,14 @@ void userMain(int username, int account_Number, int password)
 	if (menuNumber == 1)
 	{
 		userTicket(username, account_Number, password);
+		return;
 
 	}
 	else if (menuNumber == 2)
 	{
 		//goes to function cancel ticket for user
+		seeHistoryOfTickets(username, account_Number, password);
+		return;
 	}
 	else if (menuNumber == 3)
 	{
@@ -48,25 +54,29 @@ void userMain(int username, int account_Number, int password)
 }
 
 
-
-void book(int username, int account_Number, int password)
+//definition functions
+void seeHistoryOfTickets(int username, int accountNumber, int password)
 {
-	int i, r;
-	FILE * allUsersFile = fopen("allUsers.txt", "r");
-	if (allUsersFile == NULL)
+    FILE * ticketFile = fopen("ticket.txt", "r");
+    if(ticketFile == NULL)
 	{
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
-	int userName_temp, pass_temp, accountNumber;
-	char firstName[21], lastName[21], phone[21], reagent[21];
-	for (i = 0; i<100000; i++)
+    char firstName[30], lastName[30];
+    int username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day;
+    char trackingCode[15];
+    bool r = false;
+	int temp = getc(ticketFile);
+	fseek(ticketFile, -1, SEEK_CUR);
+    for (int i = 0; i<100000 && temp!=EOF; i++)
 	{
-		fscanf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", &userName_temp, &pass_temp, &accountNumber, firstName, lastName, phone, reagent);
-		if (username == userName_temp)
+    	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d\t%d\t%d\t%s", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode);
+		temp = getc(ticketFile);
+		fseek(ticketFile, -1, SEEK_CUR);
+		fscanf(ticketFile, "\n");
+		if(username_temp == username)
 		{
-			if (password == pass_temp)
-			{
 
 
 
@@ -74,28 +84,15 @@ void book(int username, int account_Number, int password)
 
 
 
-			}
-			else
-			{
-				cout << "The password is incorrect!\n";
-				return;
-			}
+			r = true;
+
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
+	if(r == false)
+	{
+		cout << "You have no declared trip\n";
+		return;
+	}
+    //close file
+    fclose(ticketFile);
+}
