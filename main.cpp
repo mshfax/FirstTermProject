@@ -177,9 +177,8 @@ void logIn() //function to log in
                     else if(tempUserName == 3)
                     {
                         // goes to user function
-                        userMain(username, accountNumber);
                         cout << "Hi " << firstName << endl;
-						
+                        userMain(username, accountNumber, password);
                         break;
                     }
                     else if(tempUserName == 5)

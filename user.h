@@ -29,7 +29,6 @@ void userMain(int username, int account_Number, int password)
 	{
 		userTicket(username, account_Number, password);
 		return;
-
 	}
 	else if (menuNumber == 2)
 	{
@@ -71,7 +70,7 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
 	fseek(ticketFile, -1, SEEK_CUR);
     for (int i = 0; i<100000 && temp!=EOF; i++)
 	{
-    	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d\t%d\t%d\t%s", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode);
+    	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode);
 		temp = getc(ticketFile);
 		fseek(ticketFile, -1, SEEK_CUR);
 		fscanf(ticketFile, "\n");
