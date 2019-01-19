@@ -395,7 +395,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
                     }
                 }
 
-             
+
                 fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
                 cash = cash + driverCash;
 				fprintf(transactionFile, "%d\t+%d\t%s\n", accountNumber_driver, driverCash, trackingCode);
