@@ -13,13 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e4f7b45-17aa-4625-999a-bc19f57d2ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Project" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/accounts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ticket.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ticket.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/transaction.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/transaction.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ticket.h" beforeDir="false" afterPath="$PROJECT_DIR$/ticket.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user.h" beforeDir="false" afterPath="$PROJECT_DIR$/user.h" afterDir="false" />
     </list>
@@ -59,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
+            <state relative-caret-position="234">
               <caret line="180" column="68" selection-start-line="180" selection-start-column="68" selection-end-line="180" selection-end-column="68" />
               <folding>
                 <element signature="e#35#54#0" expanded="true" />
@@ -68,11 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Admin.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30280">
-              <caret line="1514" selection-start-line="1514" selection-end-line="1514" />
+            <state relative-caret-position="320">
+              <caret line="1549" column="60" lean-forward="true" selection-start-line="1549" selection-start-column="60" selection-end-line="1549" selection-end-column="60" />
+              <folding>
+                <element signature="e#389#407#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="804">
-              <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="65" />
+            <state relative-caret-position="700">
+              <caret line="83" column="32" lean-forward="true" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
               <folding>
                 <element signature="e#113#132#0" expanded="true" />
               </folding>
@@ -89,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticket.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="40">
+              <caret line="323" column="256" selection-start-line="323" selection-start-column="256" selection-end-line="323" selection-end-column="256" />
               <folding>
                 <element signature="e#120#138#0" expanded="true" />
               </folding>
@@ -104,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/drivers.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1880">
+            <state relative-caret-position="834">
               <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
             </state>
           </provider>
@@ -151,10 +148,10 @@
         <option value="$PROJECT_DIR$/guest.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/drivers.h" />
-        <option value="$PROJECT_DIR$/Admin.h" />
-        <option value="$PROJECT_DIR$/user.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/user.h" />
         <option value="$PROJECT_DIR$/ticket.h" />
+        <option value="$PROJECT_DIR$/Admin.h" />
       </list>
     </option>
   </component>
@@ -170,7 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -182,6 +178,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,7 +316,12 @@
       <workItem from="1547896002829" duration="1413000" />
       <workItem from="1547900590258" duration="1768000" />
       <workItem from="1547902454473" duration="1768000" />
-      <workItem from="1547904281542" duration="550000" />
+      <workItem from="1547904281542" duration="1765000" />
+      <workItem from="1547906091760" duration="1211000" />
+      <workItem from="1547909087209" duration="1765000" />
+      <workItem from="1547910911872" duration="1349000" />
+      <workItem from="1547914133392" duration="646000" />
+      <workItem from="1547916000078" duration="1719000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1545672068194</created>
@@ -332,7 +334,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207305000" />
+    <option name="totallyTimeSpent" value="215210000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -446,23 +448,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Admin.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30280">
-          <caret line="1514" selection-start-line="1514" selection-end-line="1514" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/drivers.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1880">
+        <state relative-caret-position="834">
           <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
+        <state relative-caret-position="234">
           <caret line="180" column="68" selection-start-line="180" selection-start-column="68" selection-end-line="180" selection-end-column="68" />
           <folding>
             <element signature="e#35#54#0" expanded="true" />
@@ -470,22 +465,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ticket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="323" column="256" selection-start-line="323" selection-start-column="256" selection-end-line="323" selection-end-column="256" />
+          <folding>
+            <element signature="e#120#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/user.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
-          <caret line="72" column="65" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="65" />
+        <state relative-caret-position="700">
+          <caret line="83" column="32" lean-forward="true" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
           <folding>
             <element signature="e#113#132#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ticket.h">
+    <entry file="file://$PROJECT_DIR$/Admin.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        <state relative-caret-position="320">
+          <caret line="1549" column="60" lean-forward="true" selection-start-line="1549" selection-start-column="60" selection-end-line="1549" selection-end-column="60" />
           <folding>
-            <element signature="e#120#138#0" expanded="true" />
+            <element signature="e#389#407#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -84,6 +84,7 @@ void adminMain() //function to clear what admin wants to do
 		else if(n == 7)
         {
 		    //goes to function to cancel or edit a trip
+            cancelOrDelay();
         }
 		else if (n == 0)
 		{
@@ -1512,5 +1513,71 @@ int computeNewPrice(int distance, char vehicle[15])
 
 void cancelOrDelay()
 {
+    cout << "What do you want to do?\n";
+    cout << "1. cancel a trip\n";
+    cout << "2. delay a trip\n";
+    int number;
+    cin >> number;
+    if(number == 1)
+    {
 
+    }
+    else if(number == 2)
+    {
+        FILE * ticketFile = fopen("ticket.txt", "r+");
+        if(ticketFile == NULL)
+        {
+            cout << "The File opening was Unsuccessful!\n";
+            return;
+        }
+        char trackingCode[15];
+        cout << "Enter ticket's tracking Code\n";
+        scanf("%s", trackingCode);
+        char firstName[30], lastName[30];
+        int username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, cast_temp;
+        char trackingCode_temp[15];
+        bool r = false;
+        int temp = getc(ticketFile);
+        fseek(ticketFile, -1, SEEK_CUR);
+        for (int i = 0; i<100000 && temp != EOF; i++)
+        {
+            fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode_temp, &cast_temp);
+            temp = getc(ticketFile);
+            fseek(ticketFile, -1, SEEK_CUR);
+            fscanf(ticketFile, "\n");
+            if(strcmp(trackingCode, trackingCode_temp) == 0)
+            {
+                // current date/time based on current system
+                time_t now = time(0);
+                tm *ltm = localtime(&now);
+                int yearSys, monthSys, daySys, hourSys, minuteSys;
+                yearSys = 1900 + ltm->tm_year;
+                monthSys = 1 + ltm->tm_mon;
+                daySys = ltm->tm_mday;
+                hourSys = ltm->tm_hour;
+                minuteSys = ltm->tm_min;
+                int time = (abs(startTripHour - hourSys)*60) + (startTripMinute - minuteSys);
+                if(time >= 60)
+                {
+                    //90%
+
+
+
+                }
+                else
+                {
+                    //50%
+                }
+
+
+            }
+        }
+
+
+        fclose(ticketFile);
+    }
+    else
+    {
+        cout << "Sorry the number you have entered is not correct!!\n";
+    }
 }

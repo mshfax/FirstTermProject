@@ -14,7 +14,8 @@
 using namespace std;
 
 //declation functions
-void seeHistoryOfTickets(int ,int, int);
+void cancelTicket();
+void seeHistoryOfTickets(int ,int, int);//complete
 
 void userMain(int username, int account_Number, int password)
 {
@@ -33,13 +34,15 @@ void userMain(int username, int account_Number, int password)
 	else if (menuNumber == 2)
 	{
 		//goes to function cancel ticket for user
-		seeHistoryOfTickets(username, account_Number, password);
+		cancelTicket();
 		return;
 	}
 	else if (menuNumber == 3)
 	{
 		//goes to finction to see history of tickets
-	}
+        seeHistoryOfTickets(username, account_Number, password);
+        return;
+    }
 	else if (menuNumber == 0)
 	{
 		return;
@@ -68,6 +71,13 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
     bool r = false;
 	int temp = getc(ticketFile);
 	fseek(ticketFile, -1, SEEK_CUR);
+    cout << "Enter what you desire to do.\n";
+    cout << "1. See active tickets\n";
+    cout << "2. See all tickets\n";
+    int ticketNumber;
+    cin >> ticketNumber;
+	cout << "The tickets will be displayed in the format below\n";
+    cout << "FirstName\tLastName\tusername\tdriverUsername\torigin\tdestination\tstartTripTime\tdate\ttrackingCode\n\n";
     for (int i = 0; i<100000 && temp!=EOF; i++)
 	{
     	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode);
@@ -76,15 +86,54 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
 		fscanf(ticketFile, "\n");
 		if(username_temp == username)
 		{
+            // current date/time based on current system
+            time_t now = time(0);
+            tm *ltm = localtime(&now);
+            int yearSys, monthSys, daySys, hourSys, minuteSys;
+            yearSys = 1900 + ltm->tm_year;
+            monthSys = 1 + ltm->tm_mon;
+            daySys = ltm->tm_mday;
+            hourSys = ltm->tm_hour;
+            minuteSys = ltm->tm_min;
+            if(ticketNumber == 1)
+            {
+                if (monthSys == month)
+                {
+                    if(daySys == day)
+                    {
+                        if(hourSys > startTripHour)
+                        {
 
+                        }
+                        else
+                        {
+                            printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
+                        }
+                    }
+                    else if(daySys > day)
+                    {
 
+                    }
+                    else if(daySys < day)
+                    {
+                        printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
+                    }
+                }
+                else if(monthSys > month)
+                {
 
+                }
+                else if(monthSys < month)
+                {
+                    printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
+                }
 
-
-
-
+            }
+            else if(ticketNumber == 2)
+            {
+                printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
+            }
 			r = true;
-
 		}
 	}
 	if(r == false)
@@ -94,4 +143,13 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
 	}
     //close file
     fclose(ticketFile);
+}
+
+
+void cancelTicket()
+{
+    char trackingCode[15];
+    cout << "Enter trackingCode of ticket you want to cancel\n";
+    scanf("%s", trackingCode);
+    //needs to complete
 }
