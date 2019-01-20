@@ -1522,70 +1522,145 @@ void cancelOrDelay()
     cin >> number;
     if(number == 1)
     {
-		/*FILE *fileptr1, *fileptr2;
-		char filename[40];
-		char ch;
-
-		int delete_line, temp = 1;
-		strcpy(filename, "Trips.txt");
-
-		//open file in read mode
-		fileptr1 = fopen(filename, "r");
-		ch = getc(fileptr1);
-		while (ch != EOF)
-		{
-			printf("%c", ch);
-			ch = getc(fileptr1);
-		}
-		//rewind
-		rewind(fileptr1);
-		printf(" \n Enter line number of the trip to be deleted:");
-		scanf("%d", &delete_line);
-		//open new file in write mode
-		fileptr2 = fopen("replica.c", "w");
-		ch = getc(fileptr1);
-		while (ch != EOF)
-		{
-			ch = getc(fileptr1);
-			if (ch == '\n')
-				temp++;
-			//except the line to be deleted
-			if (temp != delete_line)
-			{
-				//copy all lines in file replica.c
-				putc(ch, fileptr2);
-			}
-		}
-		fclose(fileptr1);
-		fclose(fileptr2);
-		remove(filename);
-		//rename the file replica.c to original name
-		rename("replica.c", filename);
-		printf("\n The contents of file after being modified are as follows:\n");
-		fileptr1 = fopen(filename, "r");
-		ch = getc(fileptr1);
-		while (ch != EOF)
-		{
-			printf("%c", ch);
-			ch = getc(fileptr1);
-		}
-		fclose(fileptr1);
-		return;*/
-		int origin, destination, year, month, day;
+		int origin, destination, year, month, day, driverUsername, hourDuration, minuteDuration;
 		cout << "Enter the information of the trip you want to edit\n";
+		cout << "Enter driver's username\n";
+		cin >> driverUsername;
 		cout << "Enter origin\n";
 		cin >> origin;
 		cout << "Enter destination\n";
 		cin >> destination;
 		cout << "Enter trip's date: (year/month/day)\n";
 		scanf("%d/%d/%d", &year, &month, &day);
-		FILE * tripFile = fopen("Trips.txt", "r");
-		if(tripFile == NULL)
+		FILE * tripsFile = fopen("Trips.txt", "r");
+		if(tripsFile == NULL)
         {
             cout << "The File opening was Unsuccessful!\n";
             return;
         }
-		//needs to complete
+        int driverUsername_temp, origin_temp, destination_temp, distance, startTripHour, startTripMinute, year_trip, month_trip, day_trip;
+        char vehicle[15];
+        int price;
+        bool b = false;
+        int c;
+        c = getc(tripsFile);
+        fseek(tripsFile, -1, SEEK_CUR);
+        int lineNumber;
+        for (lineNumber = 1; lineNumber < 100000 && c != EOF; lineNumber++)
+        {
+            fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%d/%d/%d\t%s\t%d", &driverUsername_temp, &origin_temp, &destination_temp, &distance, &startTripHour, &startTripMinute, &hourDuration, &minuteDuration, &year_trip, &month_trip, &day_trip, vehicle, &price);
+            c = getc(tripsFile);
+            if(driverUsername == driverUsername_temp && origin == origin_temp && destination == destination_temp && year == year_trip && month == month_trip && day == day_trip)
+            {
+                //open ticket file and search in it
+
+
+                FILE * ticketFile = fopen("ticket.txt", "r");
+                if(ticketFile == NULL)
+                {
+                    cout << "The File opening was Unsuccessful!\n";
+                    return;
+                }
+                char firstName[30], lastName[30], trackingCode_temp[10];
+                int driversUsername, originTemp, destinationTemp;
+                int timemin, timehour, year_ttrip, month_ttrip, day_ttrip, userName, price_temp;
+                int Temp;
+                Temp = getc(ticketFile);
+                fseek(ticketFile, -1, SEEK_CUR);
+                int lineNumberTemp;
+                for (lineNumberTemp = 1;Temp != EOF; lineNumberTemp++)
+                {
+                    fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &userName, &driversUsername, &originTemp, &destinationTemp,&timemin, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, trackingCode_temp, &price_temp);
+                    Temp = getc(ticketFile);
+                    fseek(ticketFile, -1, SEEK_CUR);
+                    fscanf(ticketFile, "\n");
+                    if(driversUsername == driverUsername && originTemp == origin && destinationTemp == destination && year == year_ttrip && month == month_ttrip && day == day_ttrip)
+                    {
+                        float cast = price;
+                        float userCash, adminCash, driverCash;
+                        userCash = cast;
+                        adminCash = cast * (0.1);
+                        driverCash = cast * (0.9);
+                        int user_account = findAccountNumber(userName);
+                        const int admin_account = 200000;
+                        const int admin_pass = 1318;
+                        int driver_account = findAccountNumber(driversUsername);
+                        int userPass = findPass(user_account);
+                        int driver_Pass = findPass(driver_account);
+                        printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode_temp);
+						FILE *fileptr1, *fileptr2;
+						char filename[40];
+						char ch;
+						int delete_line = lineNumberTemp, temp = 1;
+						strcpy(filename, "ticket.txt");
+						fileptr1 = fopen(filename, "r");
+						//rewind
+						rewind(fileptr1);
+						//open new file in write mode
+						fileptr2 = fopen("replica.c", "w");
+						ch = 'A';
+						while (ch != EOF)
+						{
+							ch = getc(fileptr1);
+							//except the line to be deleted
+							if (temp != delete_line)
+							{
+								//copy all lines in file replica.c
+								putc(ch, fileptr2);
+							}
+							if (ch == '\n')
+							{
+								temp++;
+							}
+						}
+						fclose(fileptr1);
+						fclose(fileptr2);
+						remove(filename);
+						//rename the file replica.c to original name
+						rename("replica.c", filename);
+                    }
+                }
+                fclose(ticketFile);
+                b = true;
+                break;
+            }
+		}
+        if(b == false)
+        {
+            cout << "Sorry this trip doesn't exist\n";
+            return;
+        }
+		fclose(tripsFile);
+        FILE *fileptr1, *fileptr2;
+        char filename[40];
+        char ch;
+        int delete_line = lineNumber, temp = 1;
+        strcpy(filename, "Trips.txt");
+        fileptr1 = fopen(filename, "r");
+        //rewind
+        rewind(fileptr1);
+        //open new file in write mode
+        fileptr2 = fopen("replica.c", "w");
+        ch = 'A';
+        while (ch != EOF)
+        {
+            ch = getc(fileptr1);
+            //except the line to be deleted
+            if (temp != delete_line)
+            {
+                //copy all lines in file replica.c
+                putc(ch, fileptr2);
+            }
+            if (ch == '\n')
+            {
+                temp++;
+            }
+        }
+        fclose(fileptr1);
+        fclose(fileptr2);
+        remove(filename);
+        //rename the file replica.c to original name
+        rename("replica.c", filename);
     }
     else if(number == 2)
     {
