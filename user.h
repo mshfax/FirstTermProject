@@ -172,6 +172,18 @@ void cancelTicket()//completed
         fscanf(ticketFile, "\n");
         if(strcmp(trackingCode, trackingCode_temp) == 0)
         {
+            float cast = price_temp;
+            float userCash, adminCash, driverCash;
+            userCash = cast;
+            adminCash = cast * (0.1);
+            driverCash = cast * (0.9);
+            int user_account = findAccountNumber(userName);
+            const int admin_account = 200000;
+            const int admin_pass = 1318;
+            int driver_account = findAccountNumber(driversUsername);
+            int userPass = findPass(user_account);
+            int driver_Pass = findPass(driver_account);
+            printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode);
             break;
         }
     }

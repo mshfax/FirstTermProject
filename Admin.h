@@ -1522,9 +1522,6 @@ void cancelOrDelay()
     cin >> number;
     if(number == 1)
     {
-
-
-
 		FILE *fileptr1, *fileptr2;
 		char filename[40];
 		char ch;
@@ -1573,13 +1570,7 @@ void cancelOrDelay()
 			ch = getc(fileptr1);
 		}
 		fclose(fileptr1);
-		return 0;
-
-
-
-
-
-
+		return;
     }
     else if(number == 2)
     {

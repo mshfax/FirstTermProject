@@ -164,7 +164,7 @@ void ticketGuest()//completed
 							}
 							printInAccountFile((int)passenger_mony, (int)admin_mony, (int)driver_mony, account, accountNumber_admin, accountNumber_driver, pass, password_admin, driver_pass, trackingCode);
 							fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d\n", firstName, lastName, userName, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, year_ttrip, month_ttrip, day_ttrip, trackingCode, cast_temp);
-							cout << "mission accomplished\n";
+							cout << "Your ticket has been issued\nyour tracking code is:\t" << trackingCode << endl;
 							breakbool = true;
 							break;
 						}
@@ -323,7 +323,7 @@ void userTicket(int username, int account_Number, int password)
 							}
 							printInAccountFile((int)passenger_mony, (int)admin_mony, (int)driver_mony, account_Number, accountNumber_admin, accountNumber_driver, password, password_admin, driver_pass, trackingCode);
 							fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d\n", firstName, lastName,username, driverUsername, origin_temp, destination_temp, startTimeHour, startTimeMinute, year_ttrip, month_ttrip, day_ttrip, trackingCode, cast_temp);
-							cout << "mission accomplished\n";
+                            cout << "Your ticket has been issued\nyour tracking code is:\t" << trackingCode << endl;
 							breakbool = true;
 							break;
 						}
