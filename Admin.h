@@ -1832,6 +1832,9 @@ void cancelOrDelay()
 }
 
 
+<<<<<<< HEAD
+}
+=======
 void printInAccountFileAndTransactions(int userCash, int adminCash, int driverCash, int accountNumber_user, int accountNumber_admin, int accountNumber_driver, int password_user, int password_admin, int password_driver, char trackingCode[])
 {
 	FILE*transactionFile = fopen("transaction.txt", "a");
@@ -2105,3 +2108,4 @@ int findAccountNumber(int username)
 	fclose(allUsersFile);
 	return account;
 }
+>>>>>>> 6201f81e204d0c25187fa91bd54bb105bad54613
