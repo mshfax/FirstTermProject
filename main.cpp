@@ -103,14 +103,16 @@ void signUp() //function to sign up
     cin >> pass_temp;
     cout << "Enter your reagent (if you have no reagent enter noReagent)\n";
     scanf("%s", reagent);
+    bool b = false;
     if(pass == pass_temp)
     {
-        for(i = 0;i<100000;i++)
+        fscanf(accountsFile,"%d\t%d\t%d", &account_temp, &pass_temp, &cash);
+        for(i = 0;i < 100000;i++)
         {
             username++;
-            fscanf(accountsFile,"%d\t%d\t%d\n", &account_temp, &pass_temp, &cash);
             if(account_temp == account)
             {
+                b = true;
                 if(pass_temp == pass)
                 {
                     fprintf(allUsersFile, "%d\t%d\t%d\t%s\t%s\t%s\t%s\n", username, pass, account, firstName, lastName, phone, reagent);
@@ -123,8 +125,12 @@ void signUp() //function to sign up
                     cout << "Sorry the password is incorrect...\n";
                 }
             }
+            else
+            {
+                fscanf(accountsFile,"\n%d\t%d\t%d", &account_temp, &pass_temp, &cash);
+            }
         }
-        if(i == 100000)
+        if(b == false)
         {
             cout << "The account number you have entered is incorrect! Try again please...\n";
         }
