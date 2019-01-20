@@ -65,6 +65,7 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
+    fseek(ticketFile, 1, SEEK_SET);
     char firstName[30], lastName[30];
     int username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, cast_temp;
     char trackingCode[15];
@@ -80,10 +81,10 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
     cout << "FirstName\tLastName\tusername\tdriverUsername\torigin\tdestination\tstartTripTime\tdate\ttrackingCode\n\n";
     for (int i = 0; i<100000 && temp!=EOF; i++)
 	{
-    	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode, cast_temp);
+    	fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode, &cast_temp);
 		temp = getc(ticketFile);
-		fseek(ticketFile, -1, SEEK_CUR);
-		fscanf(ticketFile, "\n");
+		//fseek(ticketFile, -1, SEEK_CUR);
+		//fscanf(ticketFile, "\n");
 		if(username_temp == username)
 		{
             // current date/time based on current system
@@ -131,7 +132,7 @@ void seeHistoryOfTickets(int username, int accountNumber, int password)
             }
             else if(ticketNumber == 2)
             {
-                printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
+                printf("%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\n", firstName, lastName, username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, trackingCode);
             }
 			r = true;
 		}
@@ -157,6 +158,7 @@ void cancelTicket()//completed
         cout << "The File opening was Unsuccessful!\n";
         return;
     }
+    fseek(ticketFile, 1, SEEK_SET);
     char firstName[30], lastName[30], trackingCode_temp[10];
     int driversUsername, origin, destination;
     int timemin, timehour, year_ttrip, month_ttrip, day_ttrip, userName, price_temp;
@@ -164,7 +166,7 @@ void cancelTicket()//completed
     c = getc(ticketFile);
     fseek(ticketFile, -1, SEEK_CUR);
     int lineNumber;
-    for (lineNumber = 1;c != EOF; lineNumber++)
+    for (lineNumber = 2;c != EOF; lineNumber++)
     {
         fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d\n", firstName, lastName, &userName, &driversUsername, &origin, &destination,&timemin, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, trackingCode_temp, &price_temp);
         c = getc(ticketFile);

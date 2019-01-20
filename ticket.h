@@ -15,10 +15,14 @@
 #include <iostream>
 #include <string.h>
 #include<ctime>
+#include <vector>
+
 using namespace std;
 //functions declaration
 void printInAccountFile(int, int, int, int, int, int, int, int, int, char[]);
 int findTrip(int, int, char[]);
+int chooseSeatNumber(int);
+
 
 
 void ticketGuest()//completed
@@ -40,7 +44,11 @@ void ticketGuest()//completed
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
-	const int accountNumber_admin = 200000;
+    fseek(ticketFile, 1, SEEK_SET);
+    fseek(tripFile, 1, SEEK_SET);
+
+
+    const int accountNumber_admin = 200000;
 	const int password_admin = 1318;
 	int driver_pass;
 	int origin;
@@ -117,17 +125,21 @@ void ticketGuest()//completed
 					fscanf(tripFile, "\n");
 					if (origin == origin_temp && destination == destination_temp && strcmp(vehicle, vehicle_temp) == 0)
 					{
-						cout << "Hi" << "\t" << firstName << "\n\n";
-						cout << "Your route:\t" << origin_temp << "->" << destination_temp << "\n\n";
-						cout << "The distance between two cities:  " << way_temp << "\n\n";
-						printf("departure time:\t%d:%d\n", startTimeHour, startTimeMinute);
-						printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
-						cout << "The rate of each seat:\t" << cast_temp << "\n\n";
-						cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
-						cout << "Phone:\t" << phone << "\n\n";
-						cout << "Seat number:\t" << "_" << "\n\n\n";
-						cout << "press 1 to reseve\n";
-						cout << "or press 0 to exit\n";
+                        cout << "Choose your seat\n";
+                        int a = chooseSeatNumber(Nvehicle);
+                        cout<<"*************your ticket**************\n\n";
+                        cout << "           Your route:\t" << origin_temp << "->" << destination_temp << "\n\n";
+                        cout << "   The distance between two cities:\n " ;
+                        cout<<"              " <<way_temp << "\n\n";
+                        printf("departure time:\t%d:%d\t", startTimeHour, startTimeMinute);
+                        printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
+                        cout << "The rate of each seat:\n" << cast_temp << "\n\n";
+                        cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
+                        cout << "Phone:\n" << phone << "\n\n";
+                        cout << "Seat number:\t" << a << "\n\n";
+                        cout<<"**************************************\n";
+                        cout << "press 1 to reseve\n";
+                        cout << "or press 0 to exit\n";
 						cin >> taid;
 						if (taid == 1)
 						{
@@ -206,7 +218,9 @@ void userTicket(int username, int account_Number, int password)
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
-	int c;//for realize end of a file
+    fseek(ticketFile, 1, SEEK_SET);
+    fseek(tripFile, 1, SEEK_SET);
+    int c;//for realize end of a file
 	const int accountNumber_admin = 200000;
 	const int password_admin = 1318;
 	int driver_pass;
@@ -256,7 +270,7 @@ void userTicket(int username, int account_Number, int password)
     {
         cout << "The number you inserted is not correct!";
     }
-
+    bool k = false;
     c = getc(tripFile);
     fseek(tripFile, -1, SEEK_CUR);
 	for (i = 0; i < 100000 && c!=EOF; i++)
@@ -278,14 +292,19 @@ void userTicket(int username, int account_Number, int password)
 				{
 					if (password == pass_temp)
 					{
-						cout << "Your route:\t" << origin_temp << "->" << destination_temp << "\n";
-						cout << "The distance between two cities:  " << way_temp << "\n";
-						printf("departure time:\t%d:%d\n", startTimeHour, startTimeMinute);
-						printf("Time of travel:\t%d:%d\n", timeDurationHour, timeDurationMinute);
-						cout << "The rate of each seat:\t" << cast_temp << "\n\n";
+					    cout << "Choose your seat\n";
+                        int a = chooseSeatNumber(Nvehicle);
+					    cout<<"*************your ticket**************\n\n";
+						cout << "           Your route:\t" << origin_temp << "->" << destination_temp << "\n\n";
+						cout << "   The distance between two cities:\n " ;
+						cout<<"              " <<way_temp << "\n\n";
+						printf("departure time:\t%d:%d\t", startTimeHour, startTimeMinute);
+						printf("Time of travel:\t%d:%d\n\n", timeDurationHour, timeDurationMinute);
+						cout << "The rate of each seat:\n" << cast_temp << "\n\n";
 						cout << "Passenger name:\t" << firstName << " " << lastName << "\n\n";
-						cout << "Phone:\t" << phone << "\n\n";
-						cout << "Seat number:\t" << "_" << "\n\n";
+						cout << "Phone:\n" << phone << "\n\n";
+						cout << "Seat number:\t" << a << "\n\n";
+						cout<<"**************************************\n";
 						cout << "press 1 to reseve\n";
 						cout << "or press 0 to exit\n";
 						cin >> taid;
@@ -338,9 +357,10 @@ void userTicket(int username, int account_Number, int password)
 					}
 				}
 			}
+			k = true;
         }
 	}
-	if (i == 100000)
+	if (k == false)
 	{
 		cout << "Sorry there is no trip at your nest. Try again later...\n";
 		return;
@@ -367,7 +387,7 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
-	int accountNumber_temp, pass_temp, cash;
+    int accountNumber_temp, pass_temp, cash;
 	fscanf(accountsFile, "%d\t%d\t%d", &accountNumber_temp, &pass_temp, &cash);
 	int i;
 	for (i = 0; i<100000; i++)
@@ -546,12 +566,9 @@ void printInAccountFile(int userCash, int adminCash, int driverCash, int account
 						fseek(accountsFile, -1, SEEK_CUR);
 					}
 				}
-
-
-				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, driverCash);
 				cash = cash + driverCash;
 				fprintf(transactionFile, "%d\t+%d\t%s\n", accountNumber_driver, driverCash, trackingCode);
-				fprintf(accountsFile, "%d\t%d\t%d", accountNumber_driver, password_driver, cash);
+				fprintf(accountsFile, "%d\t%d\t%d\n", accountNumber_driver, password_driver, cash);
 				break;
 			}
 			else
@@ -582,6 +599,7 @@ int findTrip(int origin, int destination, char vehicle[])
 		cout << "The File opening was Unsuccessful!\n";
 		return -1;
 	}
+    fseek(tripFile, 1, SEEK_SET);
 	int origin_temp, destination_temp, driverUsername, startTimeHour, startTimeMinute, timeDurationHour, timeDurationMinute, way_temp, cast_temp, year_ttrip, month_ttrip, day_ttrip;
 	char vehicle_temp[15];
 	int a = 0;
@@ -606,4 +624,271 @@ int findTrip(int origin, int destination, char vehicle[])
 	//close open file
 	fclose(tripFile);
 	return a;
+}
+
+int computeCapacity(int number)
+{
+    FILE * vehicleFile = fopen("Vehicles.txt", "r");
+    if (vehicleFile == NULL)
+    {
+        cout << "Opening file was not successful!!\n";
+        return -1;
+    }
+    char vehicle[15];
+    int cap_temp, cap, speed, pricePolicy;
+    if (number == 1)
+    {
+        fscanf(vehicleFile, "\n%s\t%d\t%d\t%d\n", vehicle, &cap_temp, &speed, &pricePolicy);
+        cap = cap_temp;
+    }
+    else if (number == 2)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            fscanf(vehicleFile, "\n%s\t%d\t%d\t%d\n", vehicle, &cap_temp, &speed, &pricePolicy);
+        }
+        cap = cap_temp;
+    }
+    else if (number == 3)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            fscanf(vehicleFile, "\n%s\t%d\t%d\t%d\n", vehicle, &cap_temp, &speed, &pricePolicy);
+        }
+        cap = cap_temp;
+    }
+    return cap;
+}
+
+
+int chooseSeatNumber(int num)
+{
+    FILE * busFile = fopen("busF.txt", "r+");
+    FILE * trainFile = fopen("trainF.txt", "r+");
+    FILE * airplaneFile = fopen("airplaneF.txt", "r+");
+    if (busFile == NULL || trainFile == NULL || airplaneFile == NULL)
+    {
+        cout << "Opening file was not successful!!\n";
+        return -1;
+    }
+    vector <int> busvec;
+    vector <int> trainvec;
+    vector <int> airplanevec;
+
+    int buscap = computeCapacity(1);
+    int traincap = computeCapacity(2);
+    int airplanecap = computeCapacity(3);
+
+    int number;
+
+    if (num == 1)
+    {
+        int c = getc(busFile);
+        fseek(busFile, -1, SEEK_CUR);
+        int temp;
+        while (c != EOF)
+        {
+            fscanf(busFile, "%d\t", &temp);
+            busvec.push_back(temp);
+            c = getc(busFile);
+            fseek(busFile, -1, SEEK_CUR);
+        }
+        fseek(busFile, 0, SEEK_END);
+        bool b;
+        for (int i = 0; i < buscap; i++)
+        {
+            b = false;
+            for (int j = 0; j < busvec.size(); j++)
+            {
+                if (busvec.at(j) == i + 1)
+                {
+                    b = true;
+                    break;
+                }
+            }
+            if (b == false)
+            {
+                cout << "[" << i + 1 << "]";
+                if ((i + 1) % 3 == 1)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 3 == 0)
+                {
+                    cout << endl;
+                }
+                else if ((i + 1) % 3 == 2)
+                {
+                    cout << "  ";
+                }
+            }
+            else
+            {
+                if (i + 1 >= 10)
+                {
+                    cout << "   ";
+                }
+                else
+                {
+                    cout << "   ";
+                }
+                if ((i + 1) % 3 == 1)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 3 == 0)
+                {
+                    cout << endl;
+                }
+                else if ((i + 1) % 3 == 2)
+                {
+                    cout << "   ";
+                }
+            }
+        }
+        cout << "\nplease inter number ..\n";
+        cin >> number;
+        fprintf(busFile, "%d\t", number);
+    }
+        //
+    else if (num == 2)
+    {
+        int c = getc(trainFile);
+        fseek(trainFile, -1, SEEK_CUR);
+        int temp;
+        while (c != EOF)
+        {
+            fscanf(trainFile, "%d\t", &temp);
+            trainvec.push_back(temp);
+            c = getc(trainFile);
+            fseek(trainFile, -1, SEEK_CUR);
+        }
+        fseek(trainFile, 0, SEEK_END);
+        bool b;
+        for (int i = 0; i < traincap-1 ; i++)
+        {
+            b = false;
+            for (int j = 0; j < trainvec.size(); j++)
+            {
+                if (trainvec.at(j) == i+2)
+                {
+                    b = true;
+                    break;
+                }
+            }
+
+            if (b == false)
+            {
+
+                if (i == 0)
+                {
+                    cout << "[" << i + 1 << "]\t";
+                }
+                cout << "[" << i + 2 << "]";
+                if ((i + 1) % 2 == 0)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 2 == 1)
+                {
+                    cout << endl;
+                }
+            }
+            else
+            {
+                if (i == 0)
+                {
+                    cout << "\t\t";
+                }
+                if (i == 1)
+                {
+                    cout << "   ";
+                }
+                if ((i + 1) % 2 == 0)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 2 == 1)
+                {
+                    cout << endl;
+                }
+            }
+        }
+        cout << "\nplease inter number ..\n";
+        cin >> number;
+        fprintf(trainFile, "%d\t", number);
+
+    }
+        //
+    else if (num == 3)
+    {
+        int c = getc(airplaneFile);
+        fseek(airplaneFile, -1, SEEK_CUR);
+        int temp;
+        while (c != EOF)
+        {
+            fscanf(airplaneFile, "%d\t", &temp);
+            airplanevec.push_back(temp);
+            c = getc(airplaneFile);
+            fseek(airplaneFile, -1, SEEK_CUR);
+        }
+        fseek(airplaneFile, 0, SEEK_END);
+        bool b;
+        for (int i = 0; i < airplanecap-1 ; i++)
+        {
+            b = false;
+            for (int j = 0; j < airplanevec.size(); j++)
+            {
+                if (airplanevec.at(j) == i+2)
+                {
+                    b = true;
+                    break;
+                }
+            }
+
+            if (b == false)
+            {
+
+                if (i == 0)
+                {
+                    cout << "[" << i + 1 << "]\t";
+                }
+                cout << "[" << i + 2 << "]";
+                if ((i + 1) % 2 == 0)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 2 == 1)
+                {
+                    cout << endl;
+                }
+            }
+            else
+            {
+                if (i == 0)
+                {
+                    cout << "\t\t";
+                }
+                if (i == 1)
+                {
+                    cout << "   ";
+                }
+                if ((i + 1) % 2 == 0)
+                {
+                    cout << "\t";
+                }
+                else if ((i + 1) % 2 == 1)
+                {
+                    cout << endl;
+                }
+            }
+        }
+        cout << "\nplease inter number ..\n";
+        cin >> number;
+        fprintf(airplaneFile, "%d\t", number);
+    }
+    fclose(busFile);
+    fclose(trainFile);
+    fclose(airplaneFile);
+    return number;
 }

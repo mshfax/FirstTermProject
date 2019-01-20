@@ -128,7 +128,7 @@ void allUsers()
 void allTransactions()
 {
 	//needs to be completed
-	FILE * allTransactionsFile = fopen("Transactions.txt", "r");
+	FILE * allTransactionsFile = fopen("transactions.txt", "r");
 	if (allTransactionsFile == NULL)
 	{
 		cout << "The File opening was Unsuccessful!\n";
@@ -157,6 +157,7 @@ void allTrips()
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
+    fseek(allTripsFile, 1, SEEK_SET);
 	cout << "The trips will be displayed in the format below\n";
 	cout << "driver'sUsername\torigin\tdestination\tdistance\ttimeStartTrip\tduration of the trip\tvehicle\tpriceOfTheTicket\n";
 	int fileCharacters = getc(allTripsFile);
@@ -206,6 +207,7 @@ void editTrips()
 		cout << "The File opening was Unsuccessful!\n";
 		return;
 	}
+    fseek(tripsFile, 1, SEEK_SET);
 	//main code here
 	//get the username and pass of the driver
 	int username, password, origin, destination, hour, minute;
@@ -1538,6 +1540,7 @@ void cancelOrDelay()
             cout << "The File opening was Unsuccessful!\n";
             return;
         }
+        fseek(tripsFile, 1, SEEK_SET);
         int driverUsername_temp, origin_temp, destination_temp, distance, startTripHour, startTripMinute, year_trip, month_trip, day_trip;
         char vehicle[15];
         int price;
@@ -1546,21 +1549,20 @@ void cancelOrDelay()
         c = getc(tripsFile);
         fseek(tripsFile, -1, SEEK_CUR);
         int lineNumber;
-        for (lineNumber = 1; lineNumber < 100000 && c != EOF; lineNumber++)
+        for (lineNumber = 2; /*lineNumber < 100000 && */c != EOF; lineNumber++)
         {
             fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%d/%d/%d\t%s\t%d", &driverUsername_temp, &origin_temp, &destination_temp, &distance, &startTripHour, &startTripMinute, &hourDuration, &minuteDuration, &year_trip, &month_trip, &day_trip, vehicle, &price);
             c = getc(tripsFile);
             if(driverUsername == driverUsername_temp && origin == origin_temp && destination == destination_temp && year == year_trip && month == month_trip && day == day_trip)
             {
                 //open ticket file and search in it
-
-
                 FILE * ticketFile = fopen("ticket.txt", "r");
                 if(ticketFile == NULL)
                 {
                     cout << "The File opening was Unsuccessful!\n";
                     return;
                 }
+                fseek(ticketFile, 1, SEEK_SET);
                 char firstName[30], lastName[30], trackingCode_temp[10];
                 int driversUsername, originTemp, destinationTemp;
                 int timemin, timehour, year_ttrip, month_ttrip, day_ttrip, userName, price_temp;
@@ -1568,12 +1570,12 @@ void cancelOrDelay()
                 Temp = getc(ticketFile);
                 fseek(ticketFile, -1, SEEK_CUR);
                 int lineNumberTemp;
-                for (lineNumberTemp = 1;Temp != EOF; lineNumberTemp++)
+                for (lineNumberTemp = 2;Temp != EOF; lineNumberTemp++)
                 {
-                    fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &userName, &driversUsername, &originTemp, &destinationTemp,&timemin, &timehour, &year_ttrip, &month_ttrip, &day_ttrip, trackingCode_temp, &price_temp);
+                    fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &userName, &driversUsername, &originTemp, &destinationTemp,&timehour, &timemin, &year_ttrip, &month_ttrip, &day_ttrip, trackingCode_temp, &price_temp);
                     Temp = getc(ticketFile);
-                    fseek(ticketFile, -1, SEEK_CUR);
-                    fscanf(ticketFile, "\n");
+                    //fseek(ticketFile, -1, SEEK_CUR);
+                    //fscanf(ticketFile, "\n");
                     if(driversUsername == driverUsername && originTemp == origin && destinationTemp == destination && year == year_ttrip && month == month_ttrip && day == day_ttrip)
                     {
                         float cast = price;
@@ -1664,76 +1666,167 @@ void cancelOrDelay()
     }
     else if(number == 2)
     {
-        FILE * ticketFile = fopen("ticket.txt", "r+");
-        if(ticketFile == NULL)
+        int origin, destination, year, month, day, driverUsername, hourDuration, minuteDuration, NewTimeHour, NewTimeMinute;
+        cout << "Enter the information of the trip you want to edit\n";
+        cout << "Enter driver's username\n";
+        cin >> driverUsername;
+        cout << "Enter origin\n";
+        cin >> origin;
+        cout << "Enter destination\n";
+        cin >> destination;
+        cout << "Enter trip's date: (year/month/day)\n";
+        scanf("%d/%d/%d", &year, &month, &day);
+        cout << "Enter new trip time hour\n";
+        cin >> NewTimeHour;
+        cout << "Enter new trip time minute\n";
+        cin >> NewTimeMinute;
+        FILE * tripsFile = fopen("Trips.txt", "r+");
+        if(tripsFile == NULL)
         {
             cout << "The File opening was Unsuccessful!\n";
             return;
         }
-        char trackingCode[15];
-        cout << "Enter ticket's tracking Code\n";
-        scanf("%s", trackingCode);
-        char firstName[30], lastName[30];
-        int username_temp, driverUsername, origin, destination, startTripHour, startTripMinute, year, month, day, cast_temp;
-        char trackingCode_temp[15];
-        bool r = false;
-        int temp = getc(ticketFile);
-        fseek(ticketFile, -1, SEEK_CUR);
-        for (int i = 0; i<100000 && temp != EOF; i++)
+        //fseek(tripsFile, 1, SEEK_SET);
+        int driverUsername_temp, origin_temp, destination_temp, distance, startTripHour, startTripMinute, year_trip, month_trip, day_trip;
+        char vehicle[15];
+
+
+        int price;
+        bool b = false;
+        int c;
+		fscanf(tripsFile, "\n%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%d/%d/%d\t%s\t%d", &driverUsername_temp, &origin_temp, &destination_temp, &distance, &startTripHour, &startTripMinute, &hourDuration, &minuteDuration, &year_trip, &month_trip, &day_trip, vehicle, &price);
+		c = getc(tripsFile);
+		for (int i = 0; c!=EOF; i++)
         {
-            fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &username_temp, &driverUsername, &origin, &destination, &startTripHour, &startTripMinute, &year, &month, &day, trackingCode_temp, &cast_temp);
-            temp = getc(ticketFile);
-            fseek(ticketFile, -1, SEEK_CUR);
-            fscanf(ticketFile, "\n");
-            if(strcmp(trackingCode, trackingCode_temp) == 0)
+            if(driverUsername == driverUsername_temp && origin == origin_temp && destination == destination_temp && year == year_trip && month == month_trip && day == day_trip)
             {
-                // current date/time based on current system
-                time_t now = time(0);
-                tm *ltm = localtime(&now);
-                int yearSys, monthSys, daySys, hourSys, minuteSys;
-                yearSys = 1900 + ltm->tm_year;
-                monthSys = 1 + ltm->tm_mon;
-                daySys = ltm->tm_mday;
-                hourSys = ltm->tm_hour;
-                minuteSys = ltm->tm_min;
-                int time = (abs(startTripHour - hourSys)*60) + (startTripMinute - minuteSys);
-                if(time >= 60)
+                FILE * ticketFile = fopen("ticket.txt", "r+");
+                if(ticketFile == NULL)
                 {
-                    //90%
-					float cast = cast_temp * (0.9);
-					float userCash, adminCash, driverCash;
-					userCash = cast;
-					adminCash = cast * (0.1);
-					driverCash = cast * (0.9);
-					int user_account = findAccountNumber(username_temp);
-					const int admin_account = 200000;
-					const int admin_pass = 1318;
-					int driver_account = findAccountNumber(driverUsername);
-					int userPass = findPass(user_account);
-					int driver_Pass = findPass(driver_account);
-					printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode);
-					break;
+                    cout << "The File opening was Unsuccessful!\n";
+                    return;
                 }
-                else
+                fseek(ticketFile, 1, SEEK_SET);
+
+                char firstName[30], lastName[30];
+                int userUsername_temp, driverUsername_temp1, origin_temp1, destination_temp1, startTripHour_temp, startTripMinute_temp, year_temp, month_temp, day_temp;
+                char trackingCode_temp[15];
+                int cast_temp;
+                int temp = getc(ticketFile);
+                fseek(ticketFile, -1, SEEK_CUR);
+                for (int j =0 ; temp !=EOF; j++)
                 {
-                    //50%
-					float cast = cast_temp * (0.5);
-					float userCash, adminCash, driverCash;
-					userCash = cast;
-					adminCash = cast * (0.1);
-					driverCash = cast * (0.9);
-					int user_account = findAccountNumber(username_temp);
-					const int admin_account = 200000;
-					const int admin_pass = 1318;
-					int driver_account = findAccountNumber(driverUsername);
-					int userPass = findPass(user_account);
-					int driver_Pass = findPass(driver_account);
-					printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode);
-					break;
-				}
+                    fscanf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, &userUsername_temp, &driverUsername_temp1, &origin_temp1, &destination_temp1, &startTripHour_temp, &startTripMinute_temp, &year_temp, &month_temp, &day_temp, trackingCode_temp, &cast_temp);
+                    temp = getc(ticketFile);
+                    if(origin == origin_temp && destination == destination_temp && driverUsername_temp == driverUsername && year == year_temp && month == month_temp && day == day_temp)
+                    {
+                        // current date/time based on current system
+                        time_t now = time(0);
+                        tm *ltm = localtime(&now);
+                        int yearSys, monthSys, daySys, hourSys, minuteSys;
+                        yearSys = 1900 + ltm->tm_year;
+                        monthSys = 1 + ltm->tm_mon;
+                        daySys = ltm->tm_mday;
+                        hourSys = ltm->tm_hour;
+                        minuteSys = ltm->tm_min;
+                        int time = (abs(NewTimeHour - hourSys)*60) + (NewTimeMinute - minuteSys);
+                        float cast = cast_temp * (time/60) * (0.05);
+                        float userCash, adminCash, driverCash;
+                        userCash = cast;
+                        adminCash = cast * (0.1);
+                        driverCash = cast * (0.9);
+                        int user_account = findAccountNumber(userUsername_temp);
+                        const int admin_account = 200000;
+                        const int admin_pass = 1318;
+                        int driver_account = findAccountNumber(driverUsername);
+                        int userPass = findPass(user_account);
+                        int driver_Pass = findPass(driver_account);
+                        printInAccountFileAndTransactions((int)userCash,(int) adminCash,(int) driverCash, user_account, admin_account, driver_account, userPass, admin_pass, driver_Pass, trackingCode_temp);
+
+                        //erase the line
+                        int k;
+                        char temp1;      //for declare the end of a  line
+                        fseek(ticketFile, -1, SEEK_CUR);
+                        for (k = 0;; k++)
+                        {
+                            fseek(ticketFile, -1, SEEK_CUR);
+                            fscanf(ticketFile, "%c", &temp1);
+                            if (temp1 == 10)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                fseek(ticketFile, -1, SEEK_CUR);
+                            }
+                        }
+                        for (int l = 0; l <= k; l++)
+                        {
+                            fprintf(ticketFile, " ");
+                        }
+                        fseek(ticketFile, -1, SEEK_CUR);
+                        while (1)
+                        {
+                            fseek(ticketFile, -1, SEEK_CUR);
+                            fscanf(ticketFile, "%c", &temp1);
+                            if (temp1 == 10)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                fseek(ticketFile, -1, SEEK_CUR);
+                            }
+                        }
+
+                        fprintf(ticketFile, "%s\t%s\t%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", firstName, lastName, userUsername_temp, driverUsername_temp1, origin_temp1, destination_temp1, NewTimeHour, NewTimeMinute, year_temp, month_temp, day_temp, trackingCode_temp, cast_temp);
+                    }
+                }
+                b = true;
+                fclose(ticketFile);
+                {
+                    //erase the line
+                    int j;
+                    char temp;      //for declare the end of a  line
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    for (j = 0;; j++) {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                        fscanf(tripsFile, "%c", &temp);
+                        if (temp == 10) {
+                            break;
+                        } else {
+                            fseek(tripsFile, -1, SEEK_CUR);
+                        }
+                    }
+                    for (int k = 0; k <= j; k++) {
+                        fprintf(tripsFile, " ");
+                    }
+                    fseek(tripsFile, -1, SEEK_CUR);
+                    while (1) {
+                        fseek(tripsFile, -1, SEEK_CUR);
+                        fscanf(tripsFile, "%c", &temp);
+                        if (temp == 10) {
+                            break;
+                        } else {
+                            fseek(tripsFile, -1, SEEK_CUR);
+                        }
+                    }
+                }
+                fprintf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%d/%d/%d\t%s\t%d\n", driverUsername, origin_temp, destination_temp, distance, NewTimeHour, NewTimeMinute, hourDuration, minuteDuration, year_trip, month_trip, day_trip, vehicle, price);
+                break;
             }
+            else
+			{
+				fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d:%d\t%d/%d/%d\t%s\t%d", &driverUsername_temp, &origin_temp, &destination_temp, &distance, &startTripHour, &startTripMinute, &hourDuration, &minuteDuration, &year_trip, &month_trip, &day_trip, vehicle, &price);
+				c = getc(tripsFile);
+			}
         }
-        fclose(ticketFile);
+        if(b == false)
+        {
+            cout << "Sorry the trip is not exist\n";
+            return;
+        }
+        fclose(tripsFile);
     }
     else
     {
