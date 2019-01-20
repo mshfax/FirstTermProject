@@ -1522,7 +1522,7 @@ void cancelOrDelay()
     cin >> number;
     if(number == 1)
     {
-		FILE *fileptr1, *fileptr2;
+		/*FILE *fileptr1, *fileptr2;
 		char filename[40];
 		char ch;
 
@@ -1570,7 +1570,22 @@ void cancelOrDelay()
 			ch = getc(fileptr1);
 		}
 		fclose(fileptr1);
-		return;
+		return;*/
+		int origin, destination, year, month, day;
+		cout << "Enter the information of the trip you want to edit\n";
+		cout << "Enter origin\n";
+		cin >> origin;
+		cout << "Enter destination\n";
+		cin >> destination;
+		cout << "Enter trip's date: (year/month/day)\n";
+		scanf("%d/%d/%d", &year, &month, &day);
+		FILE * tripFile = fopen("Trips.txt", "r");
+		if(tripFile == NULL)
+        {
+            cout << "The File opening was Unsuccessful!\n";
+            return;
+        }
+		//needs to complete
     }
     else if(number == 2)
     {

@@ -302,54 +302,53 @@ void cancelDelayTrip()
 		cin >> destination1;
 		int BreakNumber = 0;
 		int c;
-		for (int i = 0; i < 100000 && c != EOF; i++)
+        c = getc(tripsFile);
+        fseek(tripsFile, -1, SEEK_CUR);
+        for (int i = 0; i < 100000 && c != EOF; i++)
 		{
 			fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, &year_trip, &month_trip, &day_trip, vehicle, &price);
 			c = getc(tripsFile);
-			if (username_temp == username1)
+            fseek(tripsFile, -1, SEEK_CUR);
+            fscanf(tripsFile, "\n");
+            if (username_temp == username1)
 			{
-				
-				if(origin1==origin){
-					if(destination1== destination){
-				while (username_temp == username1 && c != EOF)
+				if(origin1==origin)
 				{
-					FILE *fileptr1, *fileptr2;
-					char filename[40];
-					char ch;
-					int delete_line = lineNumber, temp = 1;
-					strcpy(filename, "Trips.txt");
-					fileptr1 = fopen(filename, "r");
-					//rewind
-					rewind(fileptr1);
-					//open new file in write mode
-					fileptr2 = fopen("replica.c", "w");
-					ch = 'A';
-					while (ch != EOF)
+					if(destination1== destination)
 					{
-						ch = getc(fileptr1);
-						//except the line to be deleted
-						if (temp != delete_line)
-						{
-							//copy all lines in file replica.c
-							putc(ch, fileptr2);
-						}
-						if (ch == '\n')
-						{
-							temp++;
-						}
-					}
-
-					fclose(fileptr1);
-					fclose(fileptr2);
-					remove(filename);
-					//rename the file replica.c to original name
-					rename("replica.c", filename);
-				}
-
-				break;
-			}
-		}
-	}
+                        /*FILE *fileptr1, *fileptr2;
+                        char filename[40];
+                        char ch;
+                        int delete_line = lineNumber, temp = 1;
+                        strcpy(filename, "Trips.txt");
+                        fileptr1 = fopen(filename, "r");
+                        //rewind
+                        rewind(fileptr1);
+                        //open new file in write mode
+                        fileptr2 = fopen("replica.c", "w");
+                        ch = 'A';
+                        while (ch != EOF)
+                        {
+                            ch = getc(fileptr1);
+                            //except the line to be deleted
+                            if (temp != delete_line)
+                            {
+                                //copy all lines in file replica.c
+                                putc(ch, fileptr2);
+                            }
+                            if (ch == '\n')
+                            {
+                                temp++;
+                            }
+                        }
+                        fclose(fileptr1);
+                        fclose(fileptr2);
+                        remove(filename);
+                        //rename the file replica.c to original name
+                        rename("replica.c", filename);*/
+			        }
+		        }
+	        }
 		}
 		if (BreakNumber == 0)
 		{
@@ -360,7 +359,7 @@ void cancelDelayTrip()
 		fclose(tripsFile);
 	}
 }
-}
+
 //=========================================================================================================
 void historyOfTrips(int username)
 {
