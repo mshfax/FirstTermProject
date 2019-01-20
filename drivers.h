@@ -272,12 +272,96 @@ void seePassengersInfo()
 	}
 	fclose(ticketFile);
 }
-//=-=-=-----------------------------------------------------------
+//=========================================================================================================
 void cancelDelayTrip()
 {
-	//code
-}
+	int username1,origin1, destination1;
+	int n;
+	cout << "press 1 to cancel\n";
+	cout << "press 2 to delay\n";
+	cin >> n;
+	if (n == 1) {
+		//open trips file and print the lines for this drivers username
+		FILE * tripsFile = fopen("Trips.txt", "r");
+		//check opening file
+		if (tripsFile == NULL)
+		{
+			cout << "The File opening was Unsuccessful!\n";
+			return;
+		}
+		int username_temp, origin, destination, distance, startTripHour, startTripMinute, year_trip, month_trip, day_trip;
+		char vehicle[15];
+		int price;
+		cout << "The trips will be displayed in the format below.(if there was a trip)\n";
+		cout << "username\torigin\tdestination\tdistance\tstart Trip time\t vehicle\tprice\n";
+		cout << "enter your user name\n";
+		cin >> username1;
+		cout << "origin:\n";
+		cin >> origin1;
+		cout << "destitation:\n";
+		cin >> destination1;
+		int BreakNumber = 0;
+		int c;
+		for (int i = 0; i < 100000 && c != EOF; i++)
+		{
+			fscanf(tripsFile, "%d\t%d\t%d\t%d\t%d:%d\t%d/%d/%d\t%s\t%d", &username_temp, &origin, &destination, &distance, &startTripHour, &startTripMinute, &year_trip, &month_trip, &day_trip, vehicle, &price);
+			c = getc(tripsFile);
+			if (username_temp == username1)
+			{
+				
+				if(origin1==origin){
+					if(destination1== destination){
+				while (username_temp == username1 && c != EOF)
+				{
+					FILE *fileptr1, *fileptr2;
+					char filename[40];
+					char ch;
+					int delete_line = lineNumber, temp = 1;
+					strcpy(filename, "Trips.txt");
+					fileptr1 = fopen(filename, "r");
+					//rewind
+					rewind(fileptr1);
+					//open new file in write mode
+					fileptr2 = fopen("replica.c", "w");
+					ch = 'A';
+					while (ch != EOF)
+					{
+						ch = getc(fileptr1);
+						//except the line to be deleted
+						if (temp != delete_line)
+						{
+							//copy all lines in file replica.c
+							putc(ch, fileptr2);
+						}
+						if (ch == '\n')
+						{
+							temp++;
+						}
+					}
 
+					fclose(fileptr1);
+					fclose(fileptr2);
+					remove(filename);
+					//rename the file replica.c to original name
+					rename("replica.c", filename);
+				}
+
+				break;
+			}
+		}
+	}
+		}
+		if (BreakNumber == 0)
+		{
+			cout << "Sorry you have no declared trip!\n";
+			return;
+		}
+		//close open files
+		fclose(tripsFile);
+	}
+}
+}
+//=========================================================================================================
 void historyOfTrips(int username)
 {
 	//open trips file and print the lines for this drivers username
