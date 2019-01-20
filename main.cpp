@@ -1,5 +1,3 @@
-//guest needs to complete
-//khare
 
 #include <iostream>
 #include <stdio.h>
@@ -14,6 +12,7 @@ using namespace std;
 //declaration functions
 void signUp(); //function to sign up
 void logIn(); //function to log in
+
 
 int main()
 {

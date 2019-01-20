@@ -1,9 +1,6 @@
 // Created by mostafa on 12/23/18.
 // The functions for Admin tasks.
-//needs to be completed
-//for function allTransactions format of the out put must be edited
-//the password confim in edit trips must be completed
-//dorost kardan tarikh barayeh admin(   ghesmati keh ba ***********  mashakh  shodeh dorost shode)
+
 #ifndef PROJECT_ADMIN_H
 #define PROJECT_ADMIN_H
 

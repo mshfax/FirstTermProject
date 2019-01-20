@@ -14,16 +14,7 @@
     <list default="true" id="3e4f7b45-17aa-4625-999a-bc19f57d2ac4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin.h" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Project.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Project" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/accounts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ticket.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ticket.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/transaction.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/transaction.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers.h" beforeDir="false" afterPath="$PROJECT_DIR$/drivers.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ticket.h" beforeDir="false" afterPath="$PROJECT_DIR$/ticket.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.h" beforeDir="false" afterPath="$PROJECT_DIR$/user.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,8 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2780">
-              <caret line="139" column="55" selection-start-line="139" selection-start-column="55" selection-end-line="139" selection-end-column="55" />
+            <state>
               <folding>
                 <element signature="e#35#54#0" expanded="true" />
               </folding>
@@ -73,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Admin.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="10" selection-start-column="10" selection-end-column="10" />
+            <state relative-caret-position="40">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="e#389#407#0" expanded="true" />
               </folding>
@@ -94,11 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ticket.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="426" column="21" lean-forward="true" selection-start-line="426" selection-start-column="21" selection-end-line="426" selection-end-column="21" />
+            <state>
               <folding>
                 <element signature="e#120#138#0" expanded="true" />
               </folding>
@@ -106,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/drivers.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12300">
+            <state relative-caret-position="12260">
               <caret line="615" column="28" selection-start-line="615" selection-start-column="28" selection-end-line="615" selection-end-column="28" />
             </state>
           </provider>
@@ -167,14 +156,14 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/user.h" />
         <option value="$PROJECT_DIR$/drivers.h" />
-        <option value="$PROJECT_DIR$/Admin.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/ticket.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/Admin.h" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
+    <option name="x" value="993" />
     <option name="y" value="25" />
     <option name="width" value="927" />
     <option name="height" value="1055" />
@@ -372,7 +361,8 @@
       <workItem from="1548005285087" duration="1772000" />
       <workItem from="1548007120666" duration="1766000" />
       <workItem from="1548008954501" duration="593000" />
-      <workItem from="1548010788371" duration="1444000" />
+      <workItem from="1548010788371" duration="1763000" />
+      <workItem from="1548012620227" duration="739000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1545672068194</created>
@@ -385,7 +375,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267053000" />
+    <option name="totallyTimeSpent" value="268111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -396,13 +386,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997233" visible="true" weight="0.13282937" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997233" weight="0.13282937" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.032397408" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4997233" weight="0.9654428" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.4997233" visible="true" weight="0.032397408" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5002767" side_tool="true" weight="0.9676026" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32937366" />
@@ -508,8 +498,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2780">
-          <caret line="139" column="55" selection-start-line="139" selection-start-column="55" selection-end-line="139" selection-end-column="55" />
+        <state>
           <folding>
             <element signature="e#35#54#0" expanded="true" />
           </folding>
@@ -518,8 +507,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Admin.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        <state relative-caret-position="40">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="e#389#407#0" expanded="true" />
           </folding>
@@ -536,20 +525,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drivers.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12300">
-          <caret line="615" column="28" selection-start-line="615" selection-start-column="28" selection-end-line="615" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ticket.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="426" column="21" lean-forward="true" selection-start-line="426" selection-start-column="21" selection-end-line="426" selection-end-column="21" />
+        <state>
           <folding>
             <element signature="e#120#138#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drivers.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12260">
+          <caret line="615" column="28" selection-start-line="615" selection-start-column="28" selection-end-line="615" selection-end-column="28" />
         </state>
       </provider>
     </entry>
